@@ -2,16 +2,16 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0B0A09">
+    <meta name="color-scheme" content="dark">
+    <meta name="description" content="S&C Perfumes: alta perfumaria árabe. Lattafa, Maison Alhambra, French Avenue, Al Wataniah e mais.">
     <title>S&C Perfumes | Alta Perfumaria Árabe</title>
     
     <!-- Fontes Premium -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    
-    <!-- Ícones -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
@@ -23,7 +23,7 @@
         <div class="nav-container">
             <h1 class="logo">S&C <span class="logo-accent">Perfumes</span></h1>
             <a href="https://www.instagram.com/sc._perfumes/" target="_blank" rel="noopener noreferrer" class="nav-social">
-                <i class="fab fa-instagram" aria-hidden="true"></i> Instagram
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg> Instagram
             </a>
         </div>
     </header>
@@ -50,9 +50,12 @@
             <!-- Preenchido por JS -->
         </nav>
 
+        <!-- FILTRO DE CATEGORIA -->
+        <nav class="category-filters" id="category-filters" aria-label="Filtro de categoria" hidden></nav>
+
         <!-- GRID DE PERFUMES -->
         <div class="perfume-grid" id="perfume-grid" role="region" aria-live="polite">
-            <div class="loading"><i class="fas fa-spinner fa-spin"></i> Carregando coleção...</div>
+            <div class="loading"><span class="spinner" aria-hidden="true"></span> Carregando coleção...</div>
         </div>
     </main>
 
@@ -62,7 +65,7 @@
             <h2 class="footer-logo">S&C <span class="logo-accent">Perfumes</span></h2>
             <p>Fragrâncias que vão além do aroma. Elas transmitem personalidade, confiança e estilo.</p>
             <a href="https://www.instagram.com/sc._perfumes/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram">
-                <i class="fab fa-instagram" aria-hidden="true"></i>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
             </a>
         </div>
         <div class="footer-bottom">
@@ -71,15 +74,15 @@
     </footer>
 
     <!-- MODAL -->
-    <dialog class="modal" id="modal">
+    <dialog class="modal" id="modal" aria-labelledby="modal-title">
         <div class="modal-box">
-            <button class="btn-close" onclick="perfumeApp.closeModal()" aria-label="Fechar modal">
-                <i class="fas fa-times" aria-hidden="true"></i>
+            <button class="btn-close" type="button" data-close aria-label="Fechar">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
             </button>
             
             <div class="modal-layout">
                 <div class="modal-img-container">
-                    <img src="" alt="Imagem do Perfume" id="modal-img">
+                    <img src="" alt="" id="modal-img" decoding="async">
                 </div>
                 
                 <div class="modal-info-container">
@@ -98,7 +101,7 @@
                         
                         <div class="modal-action">
                             <a href="https://www.instagram.com/sc._perfumes/" target="_blank" rel="noopener noreferrer" class="btn btn-instagram">
-                                <i class="fab fa-instagram" aria-hidden="true"></i> Tenho Interesse
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg> Tenho Interesse
                             </a>
                         </div>
                     </div>
