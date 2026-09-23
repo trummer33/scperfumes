@@ -1,0 +1,100 @@
+[
+  {
+    "id": "1",
+    "nome": "La Rouge Baroque Extreme",
+    "marca": "Maison Alhambra",
+    "categoria": "Feminina",
+    "img": "https://i.postimg.cc/3JmgMKYq/Screenshot-1.png",
+    "desc": "Luxo engarrafado em um frasco vermelho intenso. Uma fragrância amendoada e quente que exala poder, perfeitamente equilibrada com notas amadeiradas e doces.",
+    "destaque": true,
+    "notas": {
+      "saida": "Amêndoa Amarga e Açafrão",
+      "coracao": "Jasmim Egípcio e Cedro",
+      "fundo": "Âmbar Cinzento e Almíscar"
+    }
+  },
+  {
+    "id": "2",
+    "nome": "Liquid Brun",
+    "marca": "French Avenue",
+    "categoria": "Masculina",
+    "img": "https://s10.aconvert.com/convert/p3r68-cdx67/ao8xq-x80az.jpg",
+    "desc": "O epítome da sofisticação noturna. Uma fragrância quente, especiada e densa, formulada para quem aprecia o luxo absoluto e notas maduras.",
+    "destaque": true,
+    "notas": {
+      "saida": "Cardamomo e Canela",
+      "coracao": "Couro, Íris e Tabaco",
+      "fundo": "Madeiras Raras e Patchouli"
+    }
+  },
+  {
+    "id": "3",
+    "nome": "La Rouge Baroque",
+    "marca": "Maison Alhambra",
+    "categoria": "Feminina",
+    "img": "https://i.postimg.cc/K8btxdYx/Screenshot-2.png",
+    "desc": "Luminosa e sofisticada. A combinação perfeita de flores luminosas com a profundidade quente e envolvente do âmbar e das madeiras nobres.",
+    "destaque": false,
+    "notas": {
+      "saida": "Jasmim e Açafrão Especial",
+      "coracao": "Madeira de Âmbar",
+      "fundo": "Resina de Abeto e Cedro"
+    }
+  },
+  {
+    "id": "4",
+    "nome": "Sabah Al Ward",
+    "marca": "Al Wataniah",
+    "categoria": "Feminina",
+    "img": "https://s10.aconvert.com/convert/p3r68-cdx67/a8kd5-tse57.jpg",
+    "desc": "A feminilidade traduzida em um frasco escultural e misterioso. Uma fragrância Oriental Floral envolvente que combina notas cítricas luminosas, um toque sutilmente picante e a doçura sedutora da baunilha e do cacau.",
+    "destaque": true,
+    "notas": {
+      "saida": "Tangerina e Pimenta Rosa",
+      "coracao": "Cacau, Flor de Laranjeira e Jasmim Sambac",
+      "fundo": "Baunilha, Fava Tonka e Patchouli"
+    }
+  },
+  {
+    "id": "5",
+    "nome": "Qaed Al Fursan",
+    "marca": "Lattafa",
+    "categoria": "Compartilhável",
+    "img": "https://i.postimg.cc/j5dVWzHW/d64df76c-03cb-4ea7-8632-1ec399f6f644.jpg",
+    "desc": "Perfume Oriental Amadeirado Compartilhável lançado em 2016. Uma criação marcante que une a suculência exótica do abacaxi ao toque refinado do açafrão, evoluindo para um corpo verde e floral equilibrado por um fundo nobre de cedro, âmbar e oud.",
+    "destaque": true,
+    "notas": {
+      "saida": "Abacaxi e Açafrão",
+      "coracao": "Bálsamo de Abeto e Jasmim",
+      "fundo": "Cedro, Âmbar e Agarwood (Oud)"
+    }
+  },
+  {
+    "id": "6",
+    "nome": "Tharwah Gold",
+    "marca": "Lattafa",
+    "categoria": "Feminina",
+    "img": "https://i.postimg.cc/rFSLPFwV/58973b27-bd4d-4ae8-aab8-f2afec1a18ad.jpg",
+    "desc": "Elegante perfume Oriental Floral Feminino lançado em 2022. Revela uma abertura aromática com lavanda e bergamota, abrindo caminho para um coração floral nobre de flor de laranjeira e jasmim egípcio, arrematado por um rastro aconchegante e luxuoso de baunilha, âmbar e vetiver.",
+    "destaque": true,
+    "notas": {
+      "saida": "Lavanda e Bergamota",
+      "coracao": "Flor de Laranjeira e Jasmim Egípcio",
+      "fundo": "Baunilha, Âmbar e Vetiver"
+    }
+  },
+  {
+    "id": "7",
+    "nome": "Queen of Arabia",
+    "marca": "Lattafa",
+    "categoria": "Feminina",
+    "img": "https://i.postimg.cc/G2h0BkFH/b99fd9f2-81e6-47a3-9001-20b460815621.jpg",
+    "desc": "Uma fragrância majestosa e envolvente que celebra a elegância oriental. Traz uma abertura rica e frutada combinada a especiarias finas, evoluindo para um buquê floral opulento e finalizando com uma base quente, ambarada e sofisticada digna da realeza árabe.",
+    "destaque": true,
+    "notas": {
+      "saida": "Frutas Vermelhas, Bergamota e Açafrão",
+      "coracao": "Rosa Damascena, Jasmim e Flores Brancas",
+      "fundo": "Âmbar, Baunilha, Almíscar e Madeiras Nobres"
+    }
+  }
+]

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S&C Perfumes | Alta Perfumaria Árabe</title>
+    
+    <!-- Fontes Premium -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">S&C <span class="logo-accent">Perfumes</span></h1>
+            <a href="https://www.instagram.com/sc._perfumes/" target="_blank" rel="noopener noreferrer" class="nav-social">
+                <i class="fab fa-instagram" aria-hidden="true"></i> Instagram
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>A Joia da Perfumaria Árabe</h2>
+            <p>Descubra fragrâncias que expressam luxo, poder e exclusividade. Uma verdadeira assinatura olfativa.</p>
+            <a href="#marcas" class="btn btn-primary">Explorar Marcas</a>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main class="gallery-wrapper" id="marcas">
+        <section class="gallery-header">
+            <h2>Nossas Casas de Perfumaria</h2>
+            <div class="divider"></div>
+            <p class="subtitle">Selecione uma marca para descobrir suas criações exclusivas</p>
+        </section>
+
+        <!-- FILTROS -->
+        <nav class="brand-filters" id="brand-filters" aria-label="Filtro de marcas">
+            <!-- Preenchido por JS -->
+        </nav>
+
+        <!-- GRID DE PERFUMES -->
+        <div class="perfume-grid" id="perfume-grid" role="region" aria-live="polite">
+            <div class="loading"><i class="fas fa-spinner fa-spin"></i> Carregando coleção...</div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h2 class="footer-logo">S&C <span class="logo-accent">Perfumes</span></h2>
+            <p>Fragrâncias que vão além do aroma. Elas transmitem personalidade, confiança e estilo.</p>
+            <a href="https://www.instagram.com/sc._perfumes/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram">
+                <i class="fab fa-instagram" aria-hidden="true"></i>
+            </a>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 S&C Perfumes. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- MODAL -->
+    <dialog class="modal" id="modal">
+        <div class="modal-box">
+            <button class="btn-close" onclick="perfumeApp.closeModal()" aria-label="Fechar modal">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+            
+            <div class="modal-layout">
+                <div class="modal-img-container">
+                    <img src="" alt="Imagem do Perfume" id="modal-img">
+                </div>
+                
+                <div class="modal-info-container">
+                    <div class="modal-info-content">
+                        <span class="modal-brand" id="modal-brand"></span>
+                        <h3 class="modal-title" id="modal-title"></h3>
+                        
+                        <div class="modal-divider"></div>
+                        
+                        <p class="modal-desc" id="modal-desc"></p>
+                        
+                        <div class="pyramid">
+                            <h4>Pirâmide Olfativa</h4>
+                            <ul id="modal-notes"></ul>
+                        </div>
+                        
+                        <div class="modal-action">
+                            <a href="https://www.instagram.com/sc._perfumes/" target="_blank" rel="noopener noreferrer" class="btn btn-instagram">
+                                <i class="fab fa-instagram" aria-hidden="true"></i> Tenho Interesse
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- Scripts -->
+    <script type="module" src="script.js"></script>
+</body>
+</html>

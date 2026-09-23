@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin | S&C Perfumes</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #0B0A09; --bg-alt: #1A1816; --bg-card: #16140F;
+            --gold: #D4AF37; --gold-hover: #E8C547;
+            --text-main: #FDFCF0; --text-muted: #A39E99;
+            --border: #3A3530; --danger: #E0685C; --success: #7BC29A;
+            --font-display: 'Cinzel', serif; --font-body: 'Lato', sans-serif;
+            --sidebar-width: 260px; --transition: 0.3s ease;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg-dark); color: var(--text-main); font-family: var(--font-body); min-height: 100vh; }
+        h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; }
+
+        /* Login */
+        .login-screen {
+            position: fixed; inset: 0; background: var(--bg-dark); z-index: 9999;
+            display: flex; align-items: center; justify-content: center; padding: 20px;
+        }
+        .login-box {
+            background: var(--bg-card); border: 1px solid var(--border); padding: 40px;
+            border-radius: 8px; width: 100%; max-width: 380px; text-align: center;
+        }
+        .login-box h2 { font-size: 1.8rem; margin-bottom: 10px; }
+        .login-box span { color: var(--gold); }
+        .login-box p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 25px; }
+
+        /* Layout */
+        #admin-wrapper { display: none; }
+        .sidebar { width: var(--sidebar-width); background: var(--bg-alt); border-right: 1px solid var(--border); position: fixed; height: 100vh; display: flex; flex-direction: column; z-index: 100; }
+        .sidebar-header { padding: 20px; border-bottom: 1px solid var(--border); }
+        .sidebar-logo { font-size: 1.3rem; }
+        .sidebar-logo span { color: var(--gold); }
+        .nav-item { background: none; border: none; color: var(--text-muted); padding: 15px 20px; text-align: left; font-size: 0.95rem; cursor: pointer; display: flex; gap: 12px; align-items: center; width: 100%; transition: var(--transition); }
+        .nav-item:hover, .nav-item.active { background: rgba(212,175,55,0.1); color: var(--gold); }
+        .btn-logout { margin-top: auto; color: var(--danger); border-top: 1px solid var(--border); }
+
+        .main-content { margin-left: var(--sidebar-width); padding-bottom: 60px; }
+        .topbar { background: rgba(11,10,9,0.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); padding: 16px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 50; }
+        .content { padding: 30px; max-width: 1100px; margin: 0 auto; }
+        .section { display: none; }
+        .section.active { display: block; }
+
+        /* UI Elements */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 30px; }
+        .stat-card { background: var(--bg-card); padding: 20px; border: 1px solid var(--border); border-radius: 6px; display: flex; align-items: center; gap: 16px; }
+        .stat-icon { font-size: 1.8rem; color: var(--gold); }
+        .stat-info h3 { font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-body); }
+        .stat-info p { font-size: 1.6rem; }
+
+        .btn { border: none; padding: 10px 18px; border-radius: 4px; cursor: pointer; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; text-transform: uppercase; transition: var(--transition); }
+        .btn-primary { background: var(--gold); color: var(--bg-dark); }
+        .btn-primary:hover { background: var(--gold-hover); }
+        .btn-secondary { background: transparent; border: 1px solid var(--border); color: var(--text-muted); }
+        .btn-secondary:hover { color: var(--text-main); border-color: var(--text-main); }
+        .btn-danger { background: var(--danger); color: white; }
+
+        table { width: 100%; border-collapse: collapse; background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; margin-top: 15px; }
+        th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+        th { color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; }
+        .thumb { width: 44px; height: 44px; object-fit: cover; border-radius: 4px; }
+        
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+        .form-group { display: flex; flex-direction: column; gap: 6px; }
+        .form-group.full { grid-column: 1 / -1; }
+        label { font-size: 0.85rem; color: var(--text-muted); }
+        input, select, textarea { background: var(--bg-alt); border: 1px solid var(--border); color: var(--text-main); padding: 10px 12px; border-radius: 4px; font-family: inherit; font-size: 0.95rem; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--gold); }
+
+        .toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 10000; }
+        .toast { background: var(--success); color: white; padding: 12px 20px; border-radius: 4px; font-weight: bold; }
+        .toast.error { background: var(--danger); }
+    </style>
+</head>
+<body>
+
+    <!-- TELA DE LOGIN -->
+    <div class="login-screen" id="login-screen">
+        <div class="login-box">
+            <h2>S&amp;C <span>Admin</span></h2>
+            <p>Digite a senha mestra para acessar o catálogo.</p>
+            <form id="login-form">
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <input type="password" id="login-pass" placeholder="Senha de acesso" required autocomplete="current-password">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Entrar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- PAINEL -->
+    <div id="admin-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">S&amp;C <span>Admin</span></div>
+            </div>
+            <nav style="display:flex; flex-direction:column; height:calc(100% - 70px);">
+                <button class="nav-item active" data-target="dashboard"><i class="fas fa-chart-line"></i> Dashboard</button>
+                <button class="nav-item" data-target="products"><i class="fas fa-wine-bottle"></i> Perfumes</button>
+                <button class="nav-item" data-target="add-product"><i class="fas fa-plus-circle"></i> Novo Perfume</button>
+                <button class="nav-item btn-logout" id="btn-logout"><i class="fas fa-sign-out-alt"></i> Sair</button>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="topbar">
+                <h2 id="page-title">Dashboard</h2>
+                <div style="display:flex; gap:10px;">
+                    <button class="btn btn-primary" id="btn-export" title="Gera o catalog.json para enviar ao Netlify">
+                        <i class="fas fa-download"></i> Baixar catalog.json
+                    </button>
+                    <a href="index.html" target="_blank" class="btn btn-secondary">Ver Vitrine</a>
+                </div>
+            </div>
+
+            <div class="content">
+                <!-- Dashboard -->
+                <section id="dashboard" class="section active">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <i class="fas fa-wine-bottle stat-icon"></i>
+                            <div class="stat-info"><h3>Perfumes Cadastrados</h3><p id="stat-total">0</p></div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-star stat-icon"></i>
+                            <div class="stat-info"><h3>Destaques</h3><p id="stat-destaques">0</p></div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-tags stat-icon"></i>
+                            <div class="stat-info"><h3>Marcas</h3><p id="stat-marcas">0</p></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Lista -->
+                <section id="products" class="section">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <h3>Lista de Produtos</h3>
+                        <input type="text" id="search-input" placeholder="Buscar perfume..." style="width:250px;">
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Imagem</th><th>Nome</th><th>Marca</th><th>Destaque</th><th>Ações</th></tr>
+                        </thead>
+                        <tbody id="products-tbody"></tbody>
+                    </table>
+                </section>
+
+                <!-- Cadastro/Edição -->
+                <section id="add-product" class="section">
+                    <h3 id="form-title" style="margin-bottom:20px;">Cadastrar Novo Perfume</h3>
+                    <form id="product-form">
+                        <input type="hidden" id="edit-id">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Nome *</label>
+                                <input type="text" id="nome" required placeholder="Ex: Tharwah Gold">
+                            </div>
+                            <div class="form-group">
+                                <label>Marca *</label>
+                                <select id="marca" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="Maison Alhambra">Maison Alhambra</option>
+                                    <option value="Lattafa">Lattafa</option>
+                                    <option value="Al Wataniah">Al Wataniah</option>
+                                    <option value="French Avenue">French Avenue</option>
+                                    <option value="Sahari">Sahari</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Categoria *</label>
+                                <select id="categoria" required>
+                                    <option value="Feminina">Feminina</option>
+                                    <option value="Masculina">Masculina</option>
+                                    <option value="Compartilhável">Compartilhável</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Link da Imagem *</label>
+                                <input type="url" id="img" required placeholder="https://...">
+                            </div>
+                            <div class="form-group full">
+                                <label>Descrição *</label>
+                                <textarea id="desc" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Saída *</label>
+                                <input type="text" id="saida" required placeholder="Notas de topo">
+                            </div>
+                            <div class="form-group">
+                                <label>Coração *</label>
+                                <input type="text" id="coracao" required placeholder="Notas de meio">
+                            </div>
+                            <div class="form-group">
+                                <label>Fundo *</label>
+                                <input type="text" id="fundo" required placeholder="Notas de base">
+                            </div>
+                            <div class="form-group" style="justify-content:center;">
+                                <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                                    <input type="checkbox" id="destaque" style="width:auto;"> Marcar como Destaque
+                                </label>
+                            </div>
+                        </div>
+                        <div style="display:flex; gap:10px;">
+                            <button type="submit" class="btn btn-primary" id="btn-save">Salvar Produto</button>
+                            <button type="button" class="btn btn-secondary" id="btn-cancel" style="display:none;">Cancelar</button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <div class="toast-container" id="toast-container"></div>
+
+    <script>
+        // Defina aqui a sua senha de acesso ao admin
+        const ADMIN_PASSWORD = "admin";
+        const STORAGE_KEY = "sc_catalog_products";
+
+        let products = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+        // Auth
+        const loginScreen = document.getElementById("login-screen");
+        const adminWrapper = document.getElementById("admin-wrapper");
+
+        if (sessionStorage.getItem("sc_admin_auth") === "true") {
+            showAdmin();
+        }
+
+        document.getElementById("login-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            if (document.getElementById("login-pass").value === ADMIN_PASSWORD) {
+                sessionStorage.setItem("sc_admin_auth", "true");
+                showAdmin();
+            } else {
+                toast("Senha incorreta!", true);
+            }
+        });
+
+        document.getElementById("btn-logout").addEventListener("click", () => {
+            sessionStorage.removeItem("sc_admin_auth");
+            location.reload();
+        });
+
+        function showAdmin() {
+            loginScreen.style.display = "none";
+            adminWrapper.style.display = "block";
+            renderTable(products);
+            updateStats();
+        }
+
+        // Navegação
+        document.querySelectorAll(".nav-item:not(.btn-logout)").forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelectorAll(".nav-item").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+                document.getElementById(btn.dataset.target).classList.add("active");
+                document.getElementById("page-title").textContent = btn.textContent.trim();
+            });
+        });
+
+        // CRUD
+        function saveToStorage() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
+            updateStats();
+            renderTable(products);
+        }
+
+        function updateStats() {
+            document.getElementById("stat-total").textContent = products.length;
+            document.getElementById("stat-destaques").textContent = products.filter(p => p.destaque).length;
+            document.getElementById("stat-marcas").textContent = new Set(products.map(p => p.marca)).size;
+        }
+
+        function renderTable(data) {
+            const tbody = document.getElementById("products-tbody");
+            if (!data.length) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:var(--text-muted);">Nenhum produto cadastrado.</td></tr>';
+                return;
+            }
+            tbody.innerHTML = data.map(p => `
+                <tr>
+                    <td><img src="${p.img}" class="thumb" onerror="this.src='https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=200&auto=format&fit=crop'"></td>
+                    <td><strong>${p.nome}</strong></td>
+                    <td>${p.marca}</td>
+                    <td>${p.destaque ? '<i class="fas fa-star" style="color:var(--gold)"></i>' : '--'}</td>
+                    <td>
+                        <button class="btn btn-secondary" style="padding:4px 8px;" onclick="editProduct('${p.id}')"><i class="fas fa-pen"></i></button>
+                        <button class="btn btn-danger" style="padding:4px 8px;" onclick="deleteProduct('${p.id}')"><i class="fas fa-trash"></i></button>
+                    </td>
+                </tr>
+            `).join("");
+        }
+
+        document.getElementById("product-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const editId = document.getElementById("edit-id").value;
+            const item = {
+                id: editId || String(Date.now()),
+                nome: document.getElementById("nome").value.trim(),
+                marca: document.getElementById("marca").value,
+                categoria: document.getElementById("categoria").value,
+                img: document.getElementById("img").value.trim(),
+                desc: document.getElementById("desc").value.trim(),
+                destaque: document.getElementById("destaque").checked,
+                notas: {
+                    saida: document.getElementById("saida").value.trim(),
+                    coracao: document.getElementById("coracao").value.trim(),
+                    fundo: document.getElementById("fundo").value.trim()
+                }
+            };
+
+            if (editId) {
+                products = products.map(p => p.id === editId ? item : p);
+                toast("Produto atualizado!");
+            } else {
+                products.push(item);
+                toast("Produto cadastrado!");
+            }
+
+            resetForm();
+            saveToStorage();
+            document.querySelector('[data-target="products"]').click();
+        });
+
+        window.editProduct = (id) => {
+            const p = products.find(i => i.id === id);
+            if (!p) return;
+            document.getElementById("edit-id").value = p.id;
+            document.getElementById("nome").value = p.nome;
+            document.getElementById("marca").value = p.marca;
+            document.getElementById("categoria").value = p.categoria || "Feminina";
+            document.getElementById("img").value = p.img;
+            document.getElementById("desc").value = p.desc;
+            document.getElementById("saida").value = p.notas?.saida || "";
+            document.getElementById("coracao").value = p.notas?.coracao || "";
+            document.getElementById("fundo").value = p.notas?.fundo || "";
+            document.getElementById("destaque").checked = p.destaque;
+
+            document.getElementById("form-title").textContent = "Editar Perfume";
+            document.getElementById("btn-save").textContent = "Atualizar Produto";
+            document.getElementById("btn-cancel").style.display = "inline-block";
+            document.querySelector('[data-target="add-product"]').click();
+        };
+
+        window.deleteProduct = (id) => {
+            if (confirm("Excluir este produto?")) {
+                products = products.filter(p => p.id !== id);
+                saveToStorage();
+                toast("Produto removido.");
+            }
+        };
+
+        document.getElementById("btn-cancel").addEventListener("click", resetForm);
+
+        function resetForm() {
+            document.getElementById("product-form").reset();
+            document.getElementById("edit-id").value = "";
+            document.getElementById("form-title").textContent = "Cadastrar Novo Perfume";
+            document.getElementById("btn-save").textContent = "Salvar Produto";
+            document.getElementById("btn-cancel").style.display = "none";
+        }
+
+        // Exportação catalog.json
+        document.getElementById("btn-export").addEventListener("click", () => {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(products, null, 2));
+            const downloadAnchor = document.createElement("a");
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", "catalog.json");
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+            toast("catalog.json baixado com sucesso!");
+        });
+
+        function toast(msg, isError = false) {
+            const div = document.createElement("div");
+            div.className = `toast ${isError ? "error" : ""}`;
+            div.textContent = msg;
+            document.getElementById("toast-container").appendChild(div);
+            setTimeout(() => div.remove(), 3500);
+        }
+    </script>
+</body>
+</html>
