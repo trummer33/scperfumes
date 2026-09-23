@@ -33,20 +33,28 @@ const FALLBACK_CATALOG = [
     }
 ];
 
-const BRANDS = ["Destaques", "Maison Alhambra", "Lattafa", "Al Wataniah", "French Avenue", "Sahari"];
+const BRAND_ORDER = ["Maison Alhambra", "Lattafa", "Al Wataniah", "French Avenue", "Sahari"];
+const CATEGORY_ORDER = ["Feminina", "Masculina", "Compartilhável"];
+const IMG_FALLBACK = "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop";
+const REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
 class PerfumeApp {
     constructor() {
         this.catalog = [];
         this.currentBrand = "Destaques";
+        this.currentCategory = "Todas";
+        this.closing = false;
         this.init();
     }
 
     async init() {
-        await this.loadCatalog();
         this.setupDOM();
+        await this.loadCatalog();
         this.renderBrandFilters();
-        this.filterByBrand("Destaques");
+        this.renderCategoryFilters();
+        this.applyFilters();
     }
 
     async loadCatalog() {
@@ -62,97 +70,183 @@ class PerfumeApp {
         }
     }
 
+    /** Só mostra marcas que têm produto (ordem fixa + marcas novas que aparecerem no JSON). */
+    getBrands() {
+        const present = [...new Set(this.catalog.map(p => p.marca).filter(Boolean))];
+        const ordered = BRAND_ORDER.filter(b => present.includes(b));
+        const extra = present.filter(b => !BRAND_ORDER.includes(b));
+        return ["Destaques", ...ordered, ...extra];
+    }
+
+    getCategories() {
+        const present = [...new Set(this.catalog.map(p => p.categoria).filter(Boolean))];
+        const ordered = CATEGORY_ORDER.filter(c => present.includes(c));
+        const extra = present.filter(c => !CATEGORY_ORDER.includes(c));
+        return ["Todas", ...ordered, ...extra];
+    }
+
     setupDOM() {
         this.modal = document.getElementById("modal");
         this.perfumeGrid = document.getElementById("perfume-grid");
         this.brandFiltersContainer = document.getElementById("brand-filters");
+        this.categoryFiltersContainer = document.getElementById("category-filters");
 
+        // Grid: clique, teclado e imagens (fallback + fade-in)
         this.perfumeGrid.addEventListener("click", (e) => {
             const card = e.target.closest(".card");
             if (card) this.openModal(card.dataset.id);
         });
+        this.perfumeGrid.addEventListener("keydown", (e) => {
+            if (e.key !== "Enter" && e.key !== " ") return;
+            const card = e.target.closest(".card");
+            if (card) { e.preventDefault(); this.openModal(card.dataset.id); }
+        });
+        this.perfumeGrid.addEventListener("error", (e) => {
+            const img = e.target;
+            if (img.tagName === "IMG" && !img.dataset.fb) { img.dataset.fb = "1"; img.src = IMG_FALLBACK; }
+        }, true);
+        this.perfumeGrid.addEventListener("load", (e) => {
+            if (e.target.tagName === "IMG") e.target.classList.add("loaded");
+        }, true);
 
+        // Filtros (listener registrado uma única vez)
+        this.brandFiltersContainer.addEventListener("click", (e) => {
+            const btn = e.target.closest(".btn-brand");
+            if (btn) this.filterByBrand(btn.dataset.brand);
+        });
+
+        this.categoryFiltersContainer.addEventListener("click", (e) => {
+            const btn = e.target.closest(".btn-cat");
+            if (btn) this.filterByCategory(btn.dataset.cat);
+        });
+
+        // Modal
         this.modal.addEventListener("click", (e) => {
-            if (e.target === this.modal) this.closeModal();
+            if (e.target === this.modal || e.target.closest("[data-close]")) this.closeModal();
         });
-
-        document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape" && this.modal.hasAttribute("open")) this.closeModal();
-        });
+        this.modal.addEventListener("cancel", (e) => { e.preventDefault(); this.closeModal(); }); // Esc
+        window.addEventListener("popstate", () => { if (this.modal.open) this.hideModal(); }); // botão voltar do celular
     }
 
     renderBrandFilters() {
-        this.brandFiltersContainer.innerHTML = BRANDS.map(brand =>
-            `<button class="btn-brand ${brand === "Destaques" ? "active" : ""}" data-brand="${brand}">${brand}</button>`
+        this.brandFiltersContainer.innerHTML = this.getBrands().map(brand =>
+            `<button type="button" class="btn-brand ${brand === this.currentBrand ? "active" : ""}" data-brand="${esc(brand)}">${esc(brand)}</button>`
         ).join("");
+    }
 
-        this.brandFiltersContainer.addEventListener("click", (e) => {
-            if (e.target.classList.contains("btn-brand")) {
-                this.filterByBrand(e.target.dataset.brand);
-            }
-        });
+    renderCategoryFilters() {
+        const cats = this.getCategories();
+        this.categoryFiltersContainer.hidden = cats.length < 3; // com 1 só categoria não há o que filtrar
+        this.categoryFiltersContainer.innerHTML = cats.map(cat =>
+            `<button type="button" class="btn-cat ${cat === this.currentCategory ? "active" : ""}" data-cat="${esc(cat)}" aria-pressed="${cat === this.currentCategory}">${esc(cat)}</button>`
+        ).join("");
     }
 
     filterByBrand(brand) {
         this.currentBrand = brand;
-        document.querySelectorAll(".btn-brand").forEach(btn => 
-            btn.classList.toggle("active", btn.dataset.brand === brand)
-        );
+        this.brandFiltersContainer.querySelectorAll(".btn-brand").forEach(btn => {
+            const active = btn.dataset.brand === brand;
+            btn.classList.toggle("active", active);
+            if (active) btn.scrollIntoView({ inline: "center", block: "nearest", behavior: REDUCED_MOTION.matches ? "auto" : "smooth" });
+        });
+        this.applyFilters();
+    }
 
-        const filtered = brand === "Destaques"
+    filterByCategory(cat) {
+        this.currentCategory = cat;
+        this.categoryFiltersContainer.querySelectorAll(".btn-cat").forEach(btn => {
+            const active = btn.dataset.cat === cat;
+            btn.classList.toggle("active", active);
+            btn.setAttribute("aria-pressed", active);
+        });
+        this.applyFilters();
+    }
+
+    /** Marca e categoria funcionam juntas (ex.: Lattafa + Feminina). */
+    applyFilters() {
+        const byBrand = this.currentBrand === "Destaques"
             ? this.catalog.filter(p => p.destaque === true)
-            : this.catalog.filter(p => p.marca === brand);
-
+            : this.catalog.filter(p => p.marca === this.currentBrand);
+        const filtered = this.currentCategory === "Todas"
+            ? byBrand
+            : byBrand.filter(p => p.categoria === this.currentCategory);
         this.renderGrid(filtered);
     }
 
     renderGrid(products) {
         if (!products.length) {
-            this.perfumeGrid.innerHTML = '<div class="loading">Nenhuma fragrância encontrada nesta categoria.</div>';
+            this.perfumeGrid.innerHTML = '<div class="loading">Nenhuma fragrância encontrada com esses filtros. Tente outra marca ou categoria.</div>';
             return;
         }
 
-        this.perfumeGrid.innerHTML = products.map(product =>
-            `<article class="card" data-id="${product.id}" tabindex="0" role="button">
+        this.perfumeGrid.innerHTML = products.map(p =>
+            `<article class="card" data-id="${esc(p.id)}" tabindex="0" role="button" aria-label="Ver ${esc(p.nome)}">
                 <div class="card-img-box">
-                    <img src="${product.img}" alt="${product.nome}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop';">
+                    <img src="${esc(p.img)}" alt="${esc(p.nome)}" loading="lazy" decoding="async">
                 </div>
                 <div class="card-info">
-                    <span class="card-brand">${product.marca}</span>
-                    <h3 class="card-title">${product.nome}</h3>
+                    <span class="card-brand">${esc(p.marca)}</span>
+                    <h3 class="card-title">${esc(p.nome)}</h3>
                     <span class="btn-discover">Descobrir Essência</span>
                 </div>
             </article>`
         ).join("");
+
+        // imagens em cache podem já estar carregadas
+        this.perfumeGrid.querySelectorAll("img").forEach(img => { if (img.complete && img.naturalWidth) img.classList.add("loaded"); });
+
+        // pequena transição ao trocar de marca
+        this.perfumeGrid.classList.remove("is-swapping");
+        void this.perfumeGrid.offsetWidth;
+        this.perfumeGrid.classList.add("is-swapping");
     }
 
     openModal(id) {
         const perfume = this.catalog.find(p => String(p.id) === String(id));
-        if (!perfume) return;
+        if (!perfume || this.modal.open) return;
 
         const img = document.getElementById("modal-img");
+        delete img.dataset.fb;
+        img.onerror = () => { if (!img.dataset.fb) { img.dataset.fb = "1"; img.src = IMG_FALLBACK; } };
         img.src = perfume.img;
-        img.onerror = () => { img.src = "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop"; };
+        img.alt = perfume.nome;
 
         document.getElementById("modal-brand").textContent = perfume.marca;
         document.getElementById("modal-title").textContent = perfume.nome;
         document.getElementById("modal-desc").textContent = perfume.desc;
 
         document.getElementById("modal-notes").innerHTML = `
-            <li><strong>Saída:</strong> ${perfume.notas?.saida || "--"}</li>
-            <li><strong>Coração:</strong> ${perfume.notas?.coracao || "--"}</li>
-            <li><strong>Fundo:</strong> ${perfume.notas?.fundo || "--"}</li>
+            <li><strong>Saída:</strong> ${esc(perfume.notas?.saida || "--")}</li>
+            <li><strong>Coração:</strong> ${esc(perfume.notas?.coracao || "--")}</li>
+            <li><strong>Fundo:</strong> ${esc(perfume.notas?.fundo || "--")}</li>
         `;
 
-        if (this.modal.tagName === "DIALOG") this.modal.showModal();
-        else this.modal.classList.add("active");
-        document.body.style.overflow = "hidden";
+        this.modal.classList.remove("is-closing");
+        this.modal.showModal();
+        this.modal.querySelector(".modal-layout").scrollTop = 0;
+        document.documentElement.classList.add("modal-open");
+        history.pushState({ modal: true }, ""); // "voltar" no celular fecha o modal em vez de sair do site
     }
 
+    /** Todo fechamento passa pelo histórico para manter tudo sincronizado. */
     closeModal() {
-        if (this.modal.tagName === "DIALOG") this.modal.close();
-        else this.modal.classList.remove("active");
-        document.body.style.overflow = "auto";
+        if (!this.modal.open) return;
+        if (history.state && history.state.modal) history.back(); // dispara popstate -> hideModal
+        else this.hideModal();
+    }
+
+    hideModal() {
+        if (!this.modal.open || this.closing) return;
+        const done = () => {
+            this.modal.classList.remove("is-closing");
+            this.modal.close();
+            document.documentElement.classList.remove("modal-open");
+            this.closing = false;
+        };
+        if (REDUCED_MOTION.matches) return done();
+        this.closing = true;
+        this.modal.classList.add("is-closing");
+        setTimeout(done, 200);
     }
 }
 
