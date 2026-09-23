@@ -3,6 +3,10 @@
  * Lê os dados diretamente de catalog.json
  */
 
+// Vercel Web Analytics
+import { inject } from 'https://cdn.jsdelivr.net/npm/@vercel/analytics@1/dist/index.js';
+inject();
+
 const FALLBACK_CATALOG = [
     {
         id: "1",
