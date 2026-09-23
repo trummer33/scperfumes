@@ -10,6 +10,10 @@
  *   Os dados ficam só neste navegador e NÃO aparecem na vitrine.
  */
 
+// Vercel Web Analytics
+import { inject } from 'https://cdn.jsdelivr.net/npm/@vercel/analytics@1/dist/index.js';
+inject();
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
 import {
     getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc,

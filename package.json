@@ -1,0 +1,24 @@
+{
+  "name": "scperfumes",
+  "version": "1.0.0",
+  "description": "S&C Perfumes - Alta Perfumaria Árabe",
+  "main": "index.html",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trummer33/scperfumes.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trummer33/scperfumes/issues"
+  },
+  "homepage": "https://github.com/trummer33/scperfumes#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
