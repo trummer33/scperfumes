@@ -178,20 +178,51 @@ button {
 }
 
 .logo {
-    font-size: 1.6rem;
-    letter-spacing: var(--letter-spacing-wide);
-    text-transform: uppercase;
-    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--color-text-primary);
 }
 
+.logo-monogram {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    letter-spacing: .12em;
+}
+
+.logo-wordmark {
+    border-left: 1px solid rgba(212, 175, 55, .55);
+    color: var(--color-gold);
+    font-size: .67rem;
+    font-weight: 700;
+    letter-spacing: .3em;
+    padding-left: 12px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+
+.nav-links > a {
+    color: var(--color-text-secondary);
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    transition: var(--transition-fast);
+}
+
+.nav-links > a:hover { color: var(--color-gold); }
+
 .nav-social {
-    font-size: 0.9rem;
+    font-size: 0.75rem;
     letter-spacing: var(--letter-spacing-tight);
     text-transform: uppercase;
     display: flex;
     align-items: center;
     gap: var(--spacing-xs);
-    transition: var(--transition-smooth);
     white-space: nowrap;
 }
 
@@ -763,7 +794,10 @@ html { scroll-padding-top: calc(var(--nav-h) + 16px); }
     .brand-mark { gap: 10px; padding: 11px 15px; }
     .brand-mark-name { font-size: .62rem; letter-spacing: .24em; padding-left: 10px; }
     .hero p { font-size: 1rem; }
-    .logo { font-size: 1.25rem; letter-spacing: 2px; }
+    .logo { gap: 8px; }
+    .logo-monogram { font-size: 1.15rem; }
+    .logo-wordmark { font-size: .56rem; letter-spacing: .21em; padding-left: 8px; }
+    .nav-links > a:not(.nav-social) { display: none; }
     .nav-social { font-size: 0; gap: 0; width: 44px; height: 44px; justify-content: center; }
     .nav-social .icon { width: 24px; height: 24px; }
 
