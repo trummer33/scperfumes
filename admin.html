@@ -166,6 +166,7 @@
                 <button class="nav-item active" data-target="dashboard"><i class="fas fa-chart-line"></i> Dashboard</button>
                 <button class="nav-item" data-target="products"><i class="fas fa-wine-bottle"></i> Perfumes</button>
                 <button class="nav-item" data-target="add-product"><i class="fas fa-plus-circle"></i> Novo Perfume</button>
+                <button class="nav-item" data-target="site-settings"><i class="fas fa-gear"></i> Configurações</button>
                 <button class="nav-item btn-logout" id="btn-logout"><i class="fas fa-sign-out-alt"></i> Sair e voltar</button>
             </nav>
         </aside>
@@ -230,6 +231,26 @@
                         <p class="traffic-note"><i class="fas fa-circle-info" aria-hidden="true"></i> Dados demonstrativos prontos para conectar ao Google Analytics.</p>
                     </div>
                     <button class="btn btn-secondary" id="btn-reload" type="button"><i class="fas fa-rotate"></i> Recarregar do catalog.json do site</button>
+                </section>
+
+                <!-- Configurações do site -->
+                <section id="site-settings" class="section">
+                    <h3 style="margin-bottom:8px;">Configurações do site</h3>
+                    <p style="color:var(--text-muted); margin-bottom:20px;">Telefone, endereço, horários e redes sociais serão publicados em todas as páginas.</p>
+                    <form id="site-settings-form">
+                        <div class="form-grid">
+                            <div class="form-group"><label>WhatsApp com país e DDD</label><input type="tel" id="site-whatsapp" placeholder="Ex: 5567999999999"></div>
+                            <div class="form-group"><label>Telefone exibido</label><input type="text" id="site-display-phone" placeholder="Ex: (67) 99999-9999"></div>
+                            <div class="form-group full"><label>Endereço completo</label><input type="text" id="site-address" placeholder="Ex: Rua, número - Cidade/UF"></div>
+                            <div class="form-group"><label>Segunda a sexta — abertura</label><input type="time" id="site-weekday-open"></div>
+                            <div class="form-group"><label>Segunda a sexta — fechamento</label><input type="time" id="site-weekday-close"></div>
+                            <div class="form-group"><label>Sábado — abertura</label><input type="time" id="site-saturday-open"></div>
+                            <div class="form-group"><label>Sábado — fechamento</label><input type="time" id="site-saturday-close"></div>
+                            <div class="form-group"><label>Instagram</label><input type="url" id="site-instagram" placeholder="https://www.instagram.com/seu-perfil/"></div>
+                            <div class="form-group"><label>Facebook</label><input type="url" id="site-facebook" placeholder="https://www.facebook.com/sua-pagina/"></div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Salvar configurações</button>
+                    </form>
                 </section>
 
                 <!-- Lista -->
@@ -358,6 +379,37 @@
             }
         }
 
+        const settingsFields = {
+            whatsapp: document.getElementById("site-whatsapp"),
+            displayPhone: document.getElementById("site-display-phone"),
+            address: document.getElementById("site-address"),
+            weekdayOpen: document.getElementById("site-weekday-open"),
+            weekdayClose: document.getElementById("site-weekday-close"),
+            saturdayOpen: document.getElementById("site-saturday-open"),
+            saturdayClose: document.getElementById("site-saturday-close"),
+            instagram: document.getElementById("site-instagram"),
+            facebook: document.getElementById("site-facebook")
+        };
+
+        async function loadSiteSettings() {
+            const response = await fetch("/api/site-settings", { cache: "no-store" });
+            if (!response.ok) throw new Error("Configurações indisponíveis");
+            const settings = await response.json();
+            Object.entries(settingsFields).forEach(([key, input]) => { input.value = settings[key] || ""; });
+        }
+
+        document.getElementById("site-settings-form").addEventListener("submit", async (event) => {
+            event.preventDefault();
+            const settings = Object.fromEntries(Object.entries(settingsFields).map(([key, input]) => [key, input.value.trim()]));
+            try {
+                const response = await fetch("/api/site-settings", { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(settings) });
+                if (!response.ok) throw new Error();
+                toast("Configurações publicadas no site!");
+            } catch {
+                toast("Não foi possível salvar as configurações.", true);
+            }
+        });
+
         // Auth
         const loginScreen = document.getElementById("login-screen");
         const adminWrapper = document.getElementById("admin-wrapper");
@@ -404,6 +456,8 @@
             }
             renderTable(products);
             updateStats();
+            try { await loadSiteSettings(); }
+            catch { toast("Não foi possível carregar as configurações do site.", true); }
         }
 
         const trafficData = {
