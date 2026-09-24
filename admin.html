@@ -316,6 +316,8 @@
         // Defina aqui a sua senha de acesso ao admin
         const ADMIN_PASSWORD = "admin";
         const STORAGE_KEY = "sc_catalog_products";
+        const CATALOG_VERSION_KEY = "sc_catalog_version";
+        const CATALOG_VERSION = "2026-09-24";
 
         const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
         let products = [];
@@ -362,7 +364,11 @@
         async function showAdmin() {
             loginScreen.style.display = "none";
             adminWrapper.style.display = "block";
-            if (!hasLocalData) await loadFromSite(); // primeira vez: parte do catálogo publicado, sem perder nada
+            const catalogNeedsSync = localStorage.getItem(CATALOG_VERSION_KEY) !== CATALOG_VERSION;
+            if (!hasLocalData || catalogNeedsSync) {
+                await loadFromSite();
+                localStorage.setItem(CATALOG_VERSION_KEY, CATALOG_VERSION);
+            }
             renderTable(products);
             updateStats();
         }
