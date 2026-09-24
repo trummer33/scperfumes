@@ -173,8 +173,8 @@
             <div class="topbar">
                 <h2 id="page-title">Dashboard</h2>
                 <div style="display:flex; gap:10px;">
-                    <button class="btn btn-primary" id="btn-export" title="Gera o catalog.json para substituir no projeto e publicar na Vercel">
-                        <i class="fas fa-download"></i><span class="btn-label">Baixar catalog.json</span>
+                    <button class="btn btn-primary" id="btn-export" title="Baixa um backup local do catálogo">
+                        <i class="fas fa-download"></i><span class="btn-label">Baixar backup</span>
                     </button>
                     <a href="/" class="btn btn-secondary">Voltar à Vitrine</a>
                     <a href="catalogo.html" target="_blank" class="btn btn-secondary">Ver Catálogo</a>
@@ -339,7 +339,7 @@
 
         async function loadFromSite() {
             try {
-                const res = await fetch("catalog.json", { cache: "no-cache" });
+                const res = await fetch("/api/catalog", { cache: "no-store" });
                 if (!res.ok) throw new Error();
                 const data = await res.json();
                 products = Array.isArray(data) ? data : (data.products || []);
@@ -448,11 +448,20 @@
             });
         });
 
-        // CRUD
+        // Persistência local + catálogo publicado
         function saveToStorage() {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
             updateStats();
             renderTable(products);
+        }
+
+        async function publishCatalog() {
+            const response = await fetch("/api/catalog", {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(products)
+            });
+            if (!response.ok) throw new Error("Não foi possível publicar o catálogo.");
         }
 
         function updateStats() {
@@ -490,7 +499,7 @@
             if (del) deleteProduct(del.dataset.del);
         });
 
-        document.getElementById("product-form").addEventListener("submit", (e) => {
+        document.getElementById("product-form").addEventListener("submit", async (e) => {
             e.preventDefault();
             const editId = document.getElementById("edit-id").value;
             const item = {
@@ -511,17 +520,18 @@
                 }
             };
 
-            if (editId) {
-                products = products.map(p => p.id === editId ? item : p);
-                toast("Produto atualizado!");
-            } else {
-                products.push(item);
-                toast("Produto cadastrado!");
-            }
+            if (editId) products = products.map(p => p.id === editId ? item : p);
+            else products.push(item);
 
-            resetForm();
             saveToStorage();
-            document.querySelector('[data-target="products"]').click();
+            try {
+                await publishCatalog();
+                toast(editId ? "Produto atualizado e publicado!" : "Produto cadastrado e publicado!");
+                resetForm();
+                document.querySelector('[data-target="products"]').click();
+            } catch {
+                toast("Alteração salva neste navegador, mas não foi publicada.", true);
+            }
         });
 
         window.editProduct = (id) => {
@@ -547,11 +557,12 @@
             document.querySelector('[data-target="add-product"]').click();
         };
 
-        window.deleteProduct = (id) => {
+        window.deleteProduct = async (id) => {
             if (confirm("Excluir este produto?")) {
                 products = products.filter(p => p.id !== id);
                 saveToStorage();
-                toast("Produto removido.");
+                try { await publishCatalog(); toast("Produto removido da vitrine."); }
+                catch { toast("Remoção salva neste navegador, mas não foi publicada.", true); }
             }
         };
 
