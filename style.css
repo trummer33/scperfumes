@@ -208,8 +208,8 @@ button {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: linear-gradient(135deg, rgba(11, 10, 9, 0.7) 0%, rgba(26, 24, 22, 0.8) 50%, rgba(11, 10, 9, 0.7) 100%),
-                url('https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=1920&auto=format&fit=crop') center / cover;
+    background: linear-gradient(90deg, rgba(11, 10, 9, 0.96) 0%, rgba(11, 10, 9, 0.82) 44%, rgba(11, 10, 9, 0.35) 100%),
+                url('https://i.postimg.cc/qqrGMdWY/40c8db5a-54c2-4920-ab25-7ebee90e926d.jpg') center 42% / cover;
     margin-top: 70px;
     padding: var(--spacing-xl);
     position: relative;
@@ -256,6 +256,14 @@ button {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+.hero-eyebrow {
+    color: var(--color-gold-light);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
 }
 
 .hero h2 {
