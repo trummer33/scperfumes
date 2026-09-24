@@ -250,6 +250,14 @@ button {
     margin-top: var(--spacing-lg);
 }
 
+.premium-price {
+    color: var(--color-gold-light);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    letter-spacing: .04em;
+    margin: 0 0 var(--spacing-md);
+}
+
 /* ==========================================================================
    HERO SECTION - Design Elegante e Moderno
    ========================================================================== */

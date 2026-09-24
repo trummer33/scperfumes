@@ -39,6 +39,9 @@ const HIGHLIGHT_LIMIT = 6;
 const REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const formatPrice = (value) => Number.isFinite(Number(value)) && Number(value) > 0
+    ? new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(Number(value))
+    : "";
 
 class PerfumeApp {
     constructor() {
@@ -185,7 +188,7 @@ class PerfumeApp {
         this.premiumGrid.innerHTML = premium.map((product) => `
             <article class="card" data-id="${esc(product.id)}" tabindex="0" role="button" aria-label="Ver ${esc(product.nome)}">
                 <div class="card-img-box"><img src="${esc(product.img)}" alt="${esc(product.nome)}" loading="lazy" decoding="async" width="640" height="800"></div>
-                <div class="card-info"><span class="card-brand">${esc(product.marca)}</span><h3 class="card-title">${esc(product.nome)}</h3><span class="btn-discover">Conhecer a Seleção</span></div>
+                <div class="card-info"><span class="card-brand">${esc(product.marca)}</span><h3 class="card-title">${esc(product.nome)}</h3>${formatPrice(product.preco) ? `<span class="premium-price">${formatPrice(product.preco)}</span>` : ""}<span class="btn-discover">Conhecer a Seleção</span></div>
             </article>`).join("");
     }
 
