@@ -54,6 +54,7 @@ class PerfumeApp {
         await this.loadCatalog();
         this.renderBrandFilters();
         this.renderCategoryFilters();
+        this.renderPremium();
         this.applyFilters();
     }
 
@@ -90,6 +91,9 @@ class PerfumeApp {
         this.perfumeGrid = document.getElementById("perfume-grid");
         this.brandFiltersContainer = document.getElementById("brand-filters");
         this.categoryFiltersContainer = document.getElementById("category-filters");
+        this.premiumSection = document.getElementById("exclusivos");
+        this.premiumGrid = document.getElementById("premium-grid");
+        this.premiumNav = document.getElementById("nav-exclusivos");
 
         // Grid: clique, teclado e imagens (fallback + fade-in)
         this.perfumeGrid.addEventListener("click", (e) => {
@@ -97,6 +101,15 @@ class PerfumeApp {
             if (card) this.openModal(card.dataset.id);
         });
         this.perfumeGrid.addEventListener("keydown", (e) => {
+            if (e.key !== "Enter" && e.key !== " ") return;
+            const card = e.target.closest(".card");
+            if (card) { e.preventDefault(); this.openModal(card.dataset.id); }
+        });
+        this.premiumGrid.addEventListener("click", (e) => {
+            const card = e.target.closest(".card");
+            if (card) this.openModal(card.dataset.id);
+        });
+        this.premiumGrid.addEventListener("keydown", (e) => {
             if (e.key !== "Enter" && e.key !== " ") return;
             const card = e.target.closest(".card");
             if (card) { e.preventDefault(); this.openModal(card.dataset.id); }
@@ -114,6 +127,13 @@ class PerfumeApp {
         this.categoryFiltersContainer.addEventListener("click", (e) => {
             const btn = e.target.closest(".btn-cat");
             if (btn) this.filterByCategory(btn.dataset.cat);
+        });
+
+        document.addEventListener("click", (e) => {
+            const link = e.target.closest("[data-scroll]");
+            if (!link) return;
+            e.preventDefault();
+            document.getElementById(link.dataset.scroll)?.scrollIntoView({ behavior: REDUCED_MOTION.matches ? "auto" : "smooth" });
         });
 
         // Modal
@@ -156,6 +176,17 @@ class PerfumeApp {
             btn.setAttribute("aria-pressed", active);
         });
         this.applyFilters();
+    }
+
+    renderPremium() {
+        const premium = this.catalog.filter((product) => product.premium === true);
+        this.premiumSection.hidden = premium.length === 0;
+        this.premiumNav.hidden = premium.length === 0;
+        this.premiumGrid.innerHTML = premium.map((product) => `
+            <article class="card" data-id="${esc(product.id)}" tabindex="0" role="button" aria-label="Ver ${esc(product.nome)}">
+                <div class="card-img-box"><img src="${esc(product.img)}" alt="${esc(product.nome)}" loading="lazy" decoding="async" width="640" height="800"></div>
+                <div class="card-info"><span class="card-brand">${esc(product.marca)}</span><h3 class="card-title">${esc(product.nome)}</h3><span class="btn-discover">Conhecer a Seleção</span></div>
+            </article>`).join("");
     }
 
     /** Marca e categoria funcionam juntas (ex.: Lattafa + Feminina). */
