@@ -14,7 +14,7 @@ class CatalogApp {
 
   async init() {
     try {
-      const response = await fetch("catalog.json", { cache: "no-cache" });
+      const response = await fetch("/api/catalog", { cache: "no-store" });
       if (!response.ok) throw new Error("Catálogo indisponível");
       this.products = await response.json();
       this.renderFilters();

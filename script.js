@@ -60,7 +60,7 @@ class PerfumeApp {
 
     async loadCatalog() {
         try {
-            const res = await fetch("catalog.json", { cache: "no-cache" });
+            const res = await fetch("/api/catalog", { cache: "no-store" });
             if (!res.ok) throw new Error("catalog.json não encontrado");
             const data = await res.json();
             const items = Array.isArray(data) ? data : data.products;

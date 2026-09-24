@@ -1,0 +1,9 @@
+{
+  "name": "scperfumes",
+  "private": true,
+  "version": "1.0.0",
+  "type": "commonjs",
+  "dependencies": {
+    "@vercel/blob": "^2.8.0"
+  }
+}
