@@ -964,3 +964,9 @@ html { scroll-padding-top: calc(var(--nav-h) + 16px); }
 @media (hover: none) {
     .btn-cat:hover:not(.active) { color: var(--color-text-tertiary); border-color: transparent; }
 }
+
+.site-contact {
+    color: var(--color-text-secondary);
+    font-size: .85rem;
+    margin: 6px 0;
+}
