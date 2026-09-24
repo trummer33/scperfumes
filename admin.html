@@ -269,7 +269,13 @@
                                     <option value="Orientica">Orientica</option>
                                     <option value="Fragrance World">Fragrance World</option>
                                     <option value="Ard Al Zaafaran">Ard Al Zaafaran</option>
+                                    <option value="Al Atrab">Al Atrab</option>
+                                    <option value="__new__">Outra marca...</option>
                                 </select>
+                            </div>
+                            <div class="form-group" id="nova-marca-group" hidden>
+                                <label>Nova marca *</label>
+                                <input type="text" id="nova-marca" placeholder="Ex: Nome da marca">
                             </div>
                             <div class="form-group">
                                 <label>Categoria *</label>
@@ -500,13 +506,29 @@
             if (del) deleteProduct(del.dataset.del);
         });
 
+        const brandSelect = document.getElementById("marca");
+        const newBrandInput = document.getElementById("nova-marca");
+        const newBrandGroup = document.getElementById("nova-marca-group");
+        const syncNewBrandField = () => {
+            const isNewBrand = brandSelect.value === "__new__";
+            newBrandGroup.hidden = !isNewBrand;
+            newBrandInput.required = isNewBrand;
+            if (!isNewBrand) newBrandInput.value = "";
+        };
+        brandSelect.addEventListener("change", syncNewBrandField);
+
         document.getElementById("product-form").addEventListener("submit", async (e) => {
             e.preventDefault();
             const editId = document.getElementById("edit-id").value;
+            const brand = brandSelect.value === "__new__" ? newBrandInput.value.trim() : brandSelect.value;
+            if (!brand) {
+                toast("Informe a marca do perfume.", true);
+                return;
+            }
             const item = {
                 id: editId || String(Date.now()),
                 nome: document.getElementById("nome").value.trim(),
-                marca: document.getElementById("marca").value,
+                marca: brand,
                 categoria: document.getElementById("categoria").value,
                 img: document.getElementById("img").value.trim(),
                 preco: document.getElementById("preco").value === "" ? null : Number(document.getElementById("preco").value),
@@ -540,7 +562,11 @@
             if (!p) return;
             document.getElementById("edit-id").value = p.id;
             document.getElementById("nome").value = p.nome;
-            document.getElementById("marca").value = p.marca;
+            const matchingBrand = [...brandSelect.options].some((option) => option.value === p.marca);
+            brandSelect.value = matchingBrand ? p.marca : "__new__";
+            newBrandInput.value = matchingBrand ? "" : p.marca;
+            syncNewBrandField();
+            if (!matchingBrand) newBrandInput.value = p.marca;
             document.getElementById("categoria").value = p.categoria || "Feminina";
             document.getElementById("img").value = p.img;
             document.getElementById("preco").value = p.preco ?? "";
@@ -575,6 +601,7 @@
             document.getElementById("form-title").textContent = "Cadastrar Novo Perfume";
             document.getElementById("btn-save").textContent = "Salvar Produto";
             document.getElementById("btn-cancel").style.display = "none";
+            syncNewBrandField();
         }
 
         // Exportação catalog.json
