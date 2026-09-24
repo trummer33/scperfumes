@@ -348,5 +348,47 @@
       "coracao": "Jasmim, Ylang Ylang e Laranja",
       "fundo": "Baunilha, Almíscar e Musgo de Carvalho"
     }
+  },
+  {
+    "id": "26",
+    "nome": "Sabah Al Ward Sugar",
+    "marca": "Al Wataniah",
+    "categoria": "Feminina",
+    "img": "https://i.postimg.cc/yx6wsxtK/358d81bd-7951-4dce-9312-85a7bf47f6b8.jpg",
+    "desc": "Um perfume Oriental Floral feminino lançado em 2025. Frutas vermelhas vibrantes abrem espaço para um coração floral delicado e uma base cremosa, ambarada e profundamente envolvente.",
+    "destaque": false,
+    "notas": {
+      "saida": "Morango, Framboesa, Groselha Preta, Mirtilo e Cereja",
+      "coracao": "Violeta e Jasmim",
+      "fundo": "Baunilha, Âmbar, Almíscar, Pétalas de Rosa, Musgo de Carvalho, Cashmeran e Patchouli"
+    }
+  },
+  {
+    "id": "27",
+    "nome": "Asad",
+    "marca": "Lattafa",
+    "categoria": "Masculina",
+    "img": "https://i.postimg.cc/L6brFHTS/3ccae4f4-977e-4b66-ae57-86a8fd2ade3c.jpg",
+    "desc": "Um perfume Oriental masculino lançado em 2021. Especiarias e tabaco criam uma abertura intensa, evoluindo para café e íris sobre uma base quente de baunilha, âmbar e resinas.",
+    "destaque": false,
+    "notas": {
+      "saida": "Pimenta Preta, Tabaco e Abacaxi",
+      "coracao": "Patchouli, Café e Íris",
+      "fundo": "Baunilha, Âmbar, Madeira Seca, Benjoim e Ládano"
+    }
+  },
+  {
+    "id": "28",
+    "nome": "Yara Elixir",
+    "marca": "Lattafa",
+    "categoria": "Feminina",
+    "img": "https://i.postimg.cc/4yFFG5p5/b32569d8-2749-4dc5-bcbf-6b107dc53fc4.jpg",
+    "desc": "Um perfume Oriental Baunilha feminino lançado em 2025. Acordes gourmands de morango e groselha preta se unem a flores brancas e uma base cremosa de caramelo, âmbar e almíscar.",
+    "destaque": false,
+    "notas": {
+      "saida": "S’mores de Morango e Groselha Preta",
+      "coracao": "Jasmim e Flor de Laranjeira",
+      "fundo": "Baunilha, Caramelo, Âmbar e Almíscar"
+    }
   }
 ]
