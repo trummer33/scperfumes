@@ -166,5 +166,173 @@
       "coracao": "Lavanda, Cardamomo e Noz-Moscada",
       "fundo": "Fava Tonka, Vetiver e Madeiras Ambaradas"
     }
+  },
+  {
+    "id": "13",
+    "nome": "No. 2 Men",
+    "marca": "Maison Alhambra",
+    "categoria": "Masculina",
+    "img": "https://i.postimg.cc/yYDYLSJC/df12d22c-a303-4e0c-85c9-fd24b34009de.jpg",
+    "desc": "Uma fragrância masculina limpa e versátil, com frescor aromático na abertura e um fundo amadeirado elegante. Ideal para o dia a dia e ocasiões casuais.",
+    "destaque": false,
+    "notas": {
+      "saida": "Bergamota, Limão e Notas Aromáticas",
+      "coracao": "Lavanda, Gerânio e Especiarias",
+      "fundo": "Madeiras, Almíscar e Âmbar"
+    }
+  },
+  {
+    "id": "14",
+    "nome": "Opulent Dubai",
+    "marca": "Lattafa",
+    "categoria": "Feminina",
+    "img": "https://i.postimg.cc/QxFxfWBL/db3d3dc4-83e6-4650-b74e-104a6a57b304.jpg",
+    "desc": "Uma fragrância floral oriental luminosa, com um perfil delicado e sofisticado. Une flores cremosas e nuances ambaradas para um rastro elegante.",
+    "destaque": false,
+    "notas": {
+      "saida": "Notas Frutadas e Cítricas",
+      "coracao": "Flores Brancas e Rosa",
+      "fundo": "Baunilha, Âmbar e Almíscar"
+    }
+  },
+  {
+    "id": "15",
+    "nome": "Royal Amber",
+    "marca": "Orientica",
+    "categoria": "Compartilhável",
+    "img": "https://i.postimg.cc/02z2VJ6R/ac532437-0543-4513-9bab-f8d8168179fb.jpg",
+    "desc": "Uma composição oriental refinada que equilibra doçura, especiarias e madeiras quentes. Marcante, envolvente e indicada para momentos especiais.",
+    "destaque": false,
+    "notas": {
+      "saida": "Bergamota, Canela e Especiarias",
+      "coracao": "Rosa, Jasmim e Notas Ambaradas",
+      "fundo": "Âmbar, Baunilha e Madeiras Nobres"
+    }
+  },
+  {
+    "id": "16",
+    "nome": "Asad Elixir",
+    "marca": "Lattafa",
+    "categoria": "Masculina",
+    "img": "https://i.postimg.cc/RVWVgnWb/9528d015-658e-4dfd-8fb3-dd8a9914c7e8.jpg",
+    "desc": "Intensa e sedutora, esta fragrância masculina combina especiarias escuras e madeiras com um fundo quente e persistente. Uma assinatura para a noite.",
+    "destaque": false,
+    "notas": {
+      "saida": "Pimenta, Cardamomo e Notas Aromáticas",
+      "coracao": "Lavanda, Incenso e Especiarias",
+      "fundo": "Âmbar, Baunilha e Madeiras"
+    }
+  },
+  {
+    "id": "17",
+    "nome": "Intrude",
+    "marca": "Maison Alhambra",
+    "categoria": "Feminina",
+    "img": "https://i.postimg.cc/DySyxbSN/92446e74-7a12-41b7-b9a1-bac8b4e8c10d.jpg",
+    "desc": "Uma fragrância feminina intensa e envolvente, construída em torno de flores luminosas, acordes adocicados e uma base profunda para deixar presença.",
+    "destaque": false,
+    "notas": {
+      "saida": "Frutas Vermelhas e Notas Cítricas",
+      "coracao": "Jasmim, Rosa e Flores Brancas",
+      "fundo": "Baunilha, Patchouli e Almíscar"
+    }
+  },
+  {
+    "id": "18",
+    "nome": "Mohra",
+    "marca": "Lattafa",
+    "categoria": "Feminina",
+    "img": "https://i.postimg.cc/Gh4hXs4M/82090649-6c02-4b31-b241-1c98e0920351.jpg",
+    "desc": "Delicada e romântica, traz um perfil floral adocicado com toque cremoso e confortável. Uma escolha elegante para quem prefere fragrâncias suaves e marcantes.",
+    "destaque": false,
+    "notas": {
+      "saida": "Frutas, Bergamota e Notas Verdes",
+      "coracao": "Rosa, Jasmim e Flores Brancas",
+      "fundo": "Baunilha, Almíscar e Madeiras Claras"
+    }
+  },
+  {
+    "id": "19",
+    "nome": "Proud of You Absolute",
+    "marca": "Fragrance World",
+    "categoria": "Masculina",
+    "img": "https://i.postimg.cc/BQjQm1j7/594bb4d8-a0f9-490e-87de-0d69e8f6521c.jpg",
+    "desc": "Quente e moderno, combina acordes aromáticos e adocicados com uma base ambarada. Uma fragrância masculina de presença para encontros e noites especiais.",
+    "destaque": false,
+    "notas": {
+      "saida": "Bergamota, Cardamomo e Especiarias",
+      "coracao": "Lavanda, Íris e Notas Doces",
+      "fundo": "Fava Tonka, Âmbar e Madeiras"
+    }
+  },
+  {
+    "id": "20",
+    "nome": "Opera Rouge",
+    "marca": "Maison Alhambra",
+    "categoria": "Feminina",
+    "img": "https://i.postimg.cc/qRcCM6sX/8b69dd1e-b025-4545-8461-0114ce83c43e.jpg",
+    "desc": "Uma fragrância floral oriental intensa, com rosas e flores escuras sobre uma base quente e sofisticada. Ideal para quem busca uma assinatura elegante.",
+    "destaque": false,
+    "notas": {
+      "saida": "Frutas Vermelhas e Açafrão",
+      "coracao": "Rosa, Jasmim e Flores Brancas",
+      "fundo": "Âmbar, Baunilha e Almíscar"
+    }
+  },
+  {
+    "id": "21",
+    "nome": "Haya",
+    "marca": "Lattafa",
+    "categoria": "Feminina",
+    "img": "https://i.postimg.cc/LXkZ6gtr/60ce84b0-e82a-4550-b461-9a7c18e74713.jpg",
+    "desc": "Feminina e luminosa, combina delicadeza floral com um fundo macio e adocicado. Uma fragrância leve, elegante e perfeita para acompanhar a rotina.",
+    "destaque": false,
+    "notas": {
+      "saida": "Frutas, Bergamota e Notas Frescas",
+      "coracao": "Rosa, Jasmim e Flores Brancas",
+      "fundo": "Baunilha, Almíscar e Sândalo"
+    }
+  },
+  {
+    "id": "22",
+    "nome": "So Candid Rouge",
+    "marca": "Maison Alhambra",
+    "categoria": "Feminina",
+    "img": "https://i.postimg.cc/TwjWY5V9/5bf61fba-8937-4078-8994-26e9f41b257f.jpg",
+    "desc": "Uma fragrância feminina de aura romântica e sofisticada, com flores e frutas envolvidas por uma base cremosa e almiscarada.",
+    "destaque": false,
+    "notas": {
+      "saida": "Frutas Vermelhas e Mandarina",
+      "coracao": "Rosa, Jasmim e Notas Florais",
+      "fundo": "Baunilha, Almíscar e Âmbar"
+    }
+  },
+  {
+    "id": "23",
+    "nome": "Qaed Al Fursan Unlimited",
+    "marca": "Lattafa",
+    "categoria": "Compartilhável",
+    "img": "https://i.postimg.cc/x80Nkj5t/24c0483a-6865-4d9e-941e-3fb0f4f1b35c.jpg",
+    "desc": "Uma versão luminosa e compartilhável da linha Qaed Al Fursan, com frescor frutado, flores e uma base cremosa. Versátil e fácil de usar.",
+    "destaque": false,
+    "notas": {
+      "saida": "Frutas Tropicais e Cítricos",
+      "coracao": "Flores Brancas e Coco",
+      "fundo": "Baunilha, Almíscar e Sândalo"
+    }
+  },
+  {
+    "id": "24",
+    "nome": "Manaal",
+    "marca": "Ard Al Zaafaran",
+    "categoria": "Compartilhável",
+    "img": "https://i.postimg.cc/cCstK1hb/13ad2e43-1d73-4a75-884d-66783840f5b0.jpg",
+    "desc": "Uma fragrância oriental elegante, com um acorde floral cremoso que evolui para madeiras e almíscar. Possui presença refinada e confortável.",
+    "destaque": false,
+    "notas": {
+      "saida": "Bergamota e Notas Verdes",
+      "coracao": "Rosa, Jasmim e Flores Brancas",
+      "fundo": "Almíscar, Âmbar e Madeiras"
+    }
   }
 ]

@@ -33,7 +33,7 @@ const FALLBACK_CATALOG = [
     }
 ];
 
-const BRAND_ORDER = ["Maison Alhambra", "Lattafa", "Al Wataniah", "French Avenue", "Sahari"];
+const BRAND_ORDER = ["Maison Alhambra", "Lattafa", "Al Wataniah", "French Avenue", "Sahari", "Jacques Bogart", "Orientica", "Fragrance World", "Ard Al Zaafaran"];
 const CATEGORY_ORDER = ["Feminina", "Masculina", "Compartilhável"];
 const HIGHLIGHT_LIMIT = 6;
 const REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)");
