@@ -36,7 +36,6 @@ const FALLBACK_CATALOG = [
 const BRAND_ORDER = ["Maison Alhambra", "Lattafa", "Al Wataniah", "French Avenue", "Sahari"];
 const CATEGORY_ORDER = ["Feminina", "Masculina", "Compartilhável"];
 const HIGHLIGHT_LIMIT = 6;
-const IMG_FALLBACK = "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop";
 const REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -102,10 +101,6 @@ class PerfumeApp {
             const card = e.target.closest(".card");
             if (card) { e.preventDefault(); this.openModal(card.dataset.id); }
         });
-        this.perfumeGrid.addEventListener("error", (e) => {
-            const img = e.target;
-            if (img.tagName === "IMG" && !img.dataset.fb) { img.dataset.fb = "1"; img.src = IMG_FALLBACK; }
-        }, true);
         this.perfumeGrid.addEventListener("load", (e) => {
             if (e.target.tagName === "IMG") e.target.classList.add("loaded");
         }, true);
@@ -183,7 +178,7 @@ class PerfumeApp {
         this.perfumeGrid.innerHTML = products.map(p =>
             `<article class="card" data-id="${esc(p.id)}" tabindex="0" role="button" aria-label="Ver ${esc(p.nome)}">
                 <div class="card-img-box">
-                    <img src="${esc(p.img)}" alt="${esc(p.nome)}" loading="lazy" decoding="async">
+                    <img src="${esc(p.img)}" alt="${esc(p.nome)}" loading="lazy" decoding="async" width="640" height="800">
                 </div>
                 <div class="card-info">
                     <span class="card-brand">${esc(p.marca)}</span>
@@ -207,8 +202,7 @@ class PerfumeApp {
         if (!perfume || this.modal.open) return;
 
         const img = document.getElementById("modal-img");
-        delete img.dataset.fb;
-        img.onerror = () => { if (!img.dataset.fb) { img.dataset.fb = "1"; img.src = IMG_FALLBACK; } };
+        img.onerror = null;
         img.src = perfume.img;
         img.alt = perfume.nome;
 
