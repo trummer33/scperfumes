@@ -328,8 +328,6 @@
     <div class="toast-container" id="toast-container"></div>
 
     <script>
-        // Defina aqui a sua senha de acesso ao admin
-        const ADMIN_PASSWORD = "admin";
         const STORAGE_KEY = "sc_catalog_products";
         const CATALOG_VERSION_KEY = "sc_catalog_version";
         const CATALOG_VERSION = "2026-09-24-catalog-24";
@@ -357,22 +355,35 @@
         const loginScreen = document.getElementById("login-screen");
         const adminWrapper = document.getElementById("admin-wrapper");
 
-        if (sessionStorage.getItem("sc_admin_auth") === "true") {
-            showAdmin();
+        async function checkSession() {
+            try {
+                const response = await fetch("/api/admin-auth", { cache: "no-store" });
+                if (response.ok) showAdmin();
+            } catch {
+                toast("Não foi possível verificar o acesso administrativo.", true);
+            }
         }
+        checkSession();
 
-        document.getElementById("login-form").addEventListener("submit", (e) => {
+        document.getElementById("login-form").addEventListener("submit", async (e) => {
             e.preventDefault();
-            if (document.getElementById("login-pass").value === ADMIN_PASSWORD) {
-                sessionStorage.setItem("sc_admin_auth", "true");
+            const password = document.getElementById("login-pass").value;
+            try {
+                const response = await fetch("/api/admin-auth", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ password })
+                });
+                if (!response.ok) throw new Error();
+                document.getElementById("login-pass").value = "";
                 showAdmin();
-            } else {
-                toast("Senha incorreta!", true);
+            } catch {
+                toast("Senha incorreta ou acesso não configurado.", true);
             }
         });
 
-        document.getElementById("btn-logout").addEventListener("click", () => {
-            sessionStorage.removeItem("sc_admin_auth");
+        document.getElementById("btn-logout").addEventListener("click", async () => {
+            await fetch("/api/admin-auth", { method: "DELETE" });
             location.reload();
         });
 
