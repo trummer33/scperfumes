@@ -16,8 +16,9 @@ function sessionToken() {
 }
 
 function hasSession(req) {
+  if (!process.env.ADMIN_PASSWORD) return false;
   const token = req.headers.cookie?.match(new RegExp(`(?:^|;\\s*)${COOKIE}=([^;]+)`))?.[1];
-  return sameValue(token, sessionToken());
+  return Boolean(token) && sameValue(token, sessionToken());
 }
 
 module.exports = (req, res) => {
@@ -28,7 +29,7 @@ module.exports = (req, res) => {
   }
 
   if (req.method === 'DELETE') {
-    res.setHeader('Set-Cookie', `${COOKIE}=; Path=/admin; HttpOnly; Secure; SameSite=Strict; Max-Age=0`);
+    res.setHeader('Set-Cookie', `${COOKIE}=; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=0`);
     return res.status(204).end();
   }
 
@@ -38,6 +39,6 @@ module.exports = (req, res) => {
   const password = String(req.body?.password || '');
   if (!sameValue(password, process.env.ADMIN_PASSWORD)) return res.status(401).json({ error: 'Senha incorreta.' });
 
-  res.setHeader('Set-Cookie', `${COOKIE}=${sessionToken()}; Path=/admin; HttpOnly; Secure; SameSite=Strict; Max-Age=${SESSION_TTL}`);
+  res.setHeader('Set-Cookie', `${COOKIE}=${sessionToken()}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=${SESSION_TTL}`);
   return res.status(200).json({ authenticated: true });
 };
