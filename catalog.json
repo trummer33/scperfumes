@@ -46,7 +46,7 @@
     "nome": "Sabah Al Ward",
     "marca": "Al Wataniah",
     "categoria": "Feminina",
-    "img": "https://i.postimg.cc/1XFZPy0G/9f9f41aa-edd3-491a-8d70-815eb36ff03d.jpg",
+    "img": "https://i.postimg.cc/X7dw4LKp/c14d8048-10b6-4de7-bdba-c55f4ffd59d8.jpg",
     "desc": "A feminilidade traduzida em um frasco escultural e misterioso. Uma fragrância Oriental Floral envolvente que combina notas cítricas luminosas, um toque sutilmente picante e a doçura sedutora da baunilha e do cacau.",
     "destaque": true,
     "notas": {
@@ -60,7 +60,7 @@
     "nome": "Qaed Al Fursan",
     "marca": "Lattafa",
     "categoria": "Compartilhável",
-    "img": "https://i.postimg.cc/j5dVWzHW/d64df76c-03cb-4ea7-8632-1ec399f6f644.jpg",
+    "img": "https://i.postimg.cc/ZY98D4Cr/2ac857fe-ef49-40a9-82db-e54583d40f97.jpg",
     "desc": "Perfume Oriental Amadeirado Compartilhável lançado em 2016. Uma criação marcante que une a suculência exótica do abacaxi ao toque refinado do açafrão, evoluindo para um corpo verde e floral equilibrado por um fundo nobre de cedro, âmbar e oud.",
     "destaque": false,
     "notas": {
@@ -333,6 +333,20 @@
       "saida": "Bergamota e Notas Verdes",
       "coracao": "Rosa, Jasmim e Flores Brancas",
       "fundo": "Almíscar, Âmbar e Madeiras"
+    }
+  },
+  {
+    "id": "25",
+    "nome": "Dalal",
+    "marca": "Lattafa",
+    "categoria": "Feminina",
+    "img": "https://i.postimg.cc/dVFG1C4M/78f19f46-381e-4a28-abce-3def0bfc59af.jpg",
+    "desc": "Um perfume Floral Frutado Gourmand feminino, que combina frutas luminosas e flores cremosas com uma base doce, macia e envolvente.",
+    "destaque": false,
+    "notas": {
+      "saida": "Maçã e Mandarina",
+      "coracao": "Jasmim, Ylang Ylang e Laranja",
+      "fundo": "Baunilha, Almíscar e Musgo de Carvalho"
     }
   }
 ]
