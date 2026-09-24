@@ -9,7 +9,7 @@ module.exports = (req, res) => {
     return res.status(204).end();
   }
   if (req.method !== 'POST') return res.status(405).json({ error: 'Método não permitido' });
-  const username = String(req.body?.username || '').trim();
+  const username = String(req.body?.username || '').trim().toLowerCase();
   const user = authenticate(username, String(req.body?.password || ''));
   if (!user) return res.status(401).json({ error: 'Usuário ou senha incorretos.' });
   res.setHeader('Set-Cookie', `${COOKIE}=${sessionToken(user.username)}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=${SESSION_TTL}`);
