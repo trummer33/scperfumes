@@ -38,7 +38,7 @@ class CatalogApp {
   }
 
   values(key, order, allLabel) {
-    const present = [...new Set(this.products.map((item) => item[key]).filter(Boolean))];
+    const present = [...new Set(this.products.filter((item) => item.disponivel !== false).map((item) => item[key]).filter(Boolean))];
     return [allLabel, ...order.filter((value) => present.includes(value)), ...present.filter((value) => !order.includes(value))];
   }
 
@@ -63,7 +63,7 @@ class CatalogApp {
   }
 
   applyFilters() {
-    const filtered = this.products.filter((item) => (this.brand === "Todas" || item.marca === this.brand) && (this.category === "Todas" || item.categoria === this.category));
+    const filtered = this.products.filter((item) => item.disponivel !== false && (this.brand === "Todas" || item.marca === this.brand) && (this.category === "Todas" || item.categoria === this.category));
     document.getElementById("catalog-count").textContent = `${filtered.length} ${filtered.length === 1 ? "fragrância encontrada" : "fragrâncias encontradas"}`;
     this.grid.innerHTML = filtered.length ? filtered.map((item) => `<article class="card" data-id="${esc(item.id)}" tabindex="0" role="button" aria-label="Ver ${esc(item.nome)}"><div class="card-img-box"><img src="${esc(item.img)}" alt="${esc(item.nome)}" loading="lazy" decoding="async" fetchpriority="low" width="640" height="800"></div><div class="card-info"><span class="card-brand">${esc(item.marca)}</span><h2 class="card-title">${esc(item.nome)}</h2><span class="btn-discover">Descobrir Essência</span></div></article>`).join("") : '<div class="loading">Nenhuma fragrância encontrada com esses filtros.</div>';
     this.grid.querySelectorAll("img").forEach((img) => { if (img.complete && img.naturalWidth) img.classList.add("loaded"); });

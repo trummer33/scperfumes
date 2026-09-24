@@ -7,7 +7,10 @@ const PATHNAME = 'catalog/catalog.json';
 function validProduct(product) {
   return product && typeof product === 'object' &&
     ['id', 'nome', 'marca', 'categoria', 'img', 'desc'].every((key) => String(product[key] || '').trim()) &&
-    ['saida', 'coracao', 'fundo'].every((key) => String(product.notas?.[key] || '').trim());
+    ['saida', 'coracao', 'fundo'].every((key) => String(product.notas?.[key] || '').trim()) &&
+    (product.disponivel === undefined || typeof product.disponivel === 'boolean') &&
+    (product.preco == null || (Number.isFinite(Number(product.preco)) && Number(product.preco) >= 0)) &&
+    (product.estoque == null || (Number.isInteger(Number(product.estoque)) && Number(product.estoque) >= 0));
 }
 
 async function readCatalog() {
