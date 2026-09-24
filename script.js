@@ -188,7 +188,7 @@ class PerfumeApp {
     }
 
     renderPremium() {
-        const premium = this.catalog.filter((product) => product.premium === true);
+        const premium = this.catalog.filter((product) => product.premium === true && product.disponivel !== false);
         this.premiumSection.hidden = premium.length === 0;
         this.premiumNav.hidden = premium.length === 0;
         this.premiumGrid.innerHTML = premium.map((product) => `
@@ -203,9 +203,10 @@ class PerfumeApp {
 
     /** Marca e categoria funcionam juntas (ex.: Lattafa + Feminina). */
     applyFilters() {
+        const available = this.catalog.filter((product) => product.disponivel !== false);
         const byBrand = this.currentBrand === "Destaques"
-            ? this.catalog.filter(p => p.destaque === true).slice(0, HIGHLIGHT_LIMIT)
-            : this.catalog.filter(p => p.marca === this.currentBrand);
+            ? available.filter(p => p.destaque === true).slice(0, HIGHLIGHT_LIMIT)
+            : available.filter(p => p.marca === this.currentBrand);
         const filtered = this.currentCategory === "Todas"
             ? byBrand
             : byBrand.filter(p => p.categoria === this.currentCategory);

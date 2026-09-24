@@ -281,6 +281,9 @@
                             </div>
                             <div class="form-group" style="justify-content:center;">
                                 <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                                    <input type="checkbox" id="disponivel" checked style="width:auto;"> Disponível para venda
+                                </label>
+                                <label style="display:flex; align-items:center; gap:8px; cursor:pointer; margin-top:8px;">
                                     <input type="checkbox" id="destaque" style="width:auto;"> Marcar como Destaque
                                 </label>
                                 <label style="display:flex; align-items:center; gap:8px; cursor:pointer; margin-top:8px;">
@@ -508,6 +511,7 @@
                 desc: document.getElementById("desc").value.trim(),
                 destaque: document.getElementById("destaque").checked,
                 premium: document.getElementById("premium").checked,
+                disponivel: document.getElementById("disponivel").checked,
                 notas: {
                     saida: document.getElementById("saida").value.trim(),
                     coracao: document.getElementById("coracao").value.trim(),
@@ -547,6 +551,7 @@
             document.getElementById("saida").value = p.notas?.saida || "";
             document.getElementById("coracao").value = p.notas?.coracao || "";
             document.getElementById("fundo").value = p.notas?.fundo || "";
+            document.getElementById("disponivel").checked = p.disponivel !== false;
             document.getElementById("destaque").checked = p.destaque;
             document.getElementById("premium").checked = Boolean(p.premium);
 
