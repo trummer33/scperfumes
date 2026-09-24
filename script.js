@@ -67,7 +67,7 @@ class PerfumeApp {
 
     async loadCatalog() {
         try {
-            const res = await fetch("/api/catalog", { cache: "no-store" });
+            const res = await fetch("/api/catalog");
             if (!res.ok) throw new Error("catalog.json não encontrado");
             const data = await res.json();
             const items = Array.isArray(data) ? data : data.products;
@@ -218,10 +218,10 @@ class PerfumeApp {
             return;
         }
 
-        this.perfumeGrid.innerHTML = products.map(p =>
+        this.perfumeGrid.innerHTML = products.map((p, index) =>
             `<article class="card" data-id="${esc(p.id)}" tabindex="0" role="button" aria-label="Ver ${esc(p.nome)}">
                 <div class="card-img-box">
-                    <img src="${esc(p.img)}" alt="${esc(p.nome)}" loading="lazy" decoding="async" width="640" height="800">
+                    <img src="${esc(p.img)}" alt="${esc(p.nome)}" loading="${index < 2 ? "eager" : "lazy"}" fetchpriority="${index < 2 ? "high" : "low"}" decoding="async" width="640" height="800">
                 </div>
                 <div class="card-info">
                     <span class="card-brand">${esc(p.marca)}</span>

@@ -24,9 +24,11 @@ async function readCatalog() {
 }
 
 module.exports = async (req, res) => {
+  if (req.method === 'GET') {
+    res.setHeader('Cache-Control', 'public, s-maxage=15, must-revalidate');
+    return res.status(200).json(await readCatalog());
+  }
   res.setHeader('Cache-Control', 'no-store');
-
-  if (req.method === 'GET') return res.status(200).json(await readCatalog());
   if (req.method !== 'PUT') return res.status(405).json({ error: 'Método não permitido' });
   if (!hasSession(req)) return res.status(401).json({ error: 'Não autorizado' });
 
