@@ -30,12 +30,13 @@
     <!-- HEADER -->
     <header class="navbar">
         <div class="nav-container">
-            <a href="#inicio" class="logo" aria-label="S&C Perfumes — início">
+            <a href="/" class="logo" aria-label="S&C Perfumes — início">
                 <span class="logo-monogram">S&amp;C</span>
                 <span class="logo-wordmark">PERFUMES</span>
             </a>
             <nav class="nav-links" aria-label="Navegação principal">
-                <a href="#marcas">Coleção</a>
+                <a href="/" data-scroll="marcas">Coleção</a>
+                <a href="/" data-scroll="exclusivos" id="nav-exclusivos" hidden>Exclusivos</a>
                 <a href="https://www.instagram.com/sc._perfumes/" target="_blank" rel="noopener noreferrer" class="nav-social">
                     <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg> Instagram
                 </a>
@@ -53,8 +54,17 @@
             <p class="hero-eyebrow">PERFUMARIA S&amp;C</p>
             <h2>Perfumes que deixam assinatura</h2>
             <p>Uma seleção autoral de perfumes árabes para transformar presença em memória.</p>
-            <a href="#marcas" class="btn btn-primary">Explorar Marcas</a>
+            <a href="/" data-scroll="marcas" class="btn btn-primary">Explorar Marcas</a>
         </div>
+    </section>
+
+    <section class="premium-section" id="exclusivos" hidden aria-labelledby="premium-title">
+        <div class="premium-header">
+            <p class="hero-eyebrow">COLEÇÃO RESERVA</p>
+            <h2 id="premium-title">Seleção Premium</h2>
+            <p>Fragrâncias selecionadas para quem procura algo verdadeiramente especial.</p>
+        </div>
+        <div class="premium-grid" id="premium-grid"></div>
     </section>
 
     <!-- MAIN CONTENT -->
