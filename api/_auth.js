@@ -8,7 +8,7 @@ function sameValue(left, right) {
 }
 
 function users() {
-  const projectUsers = ['sandra_sc', 'cleber_sc']
+  const projectUsers = ['sandra_sc', 'cleber_sc', 'joao_sc']
     .filter((username) => process.env[username])
     .map((username) => ({ username, password: process.env[username] }));
   try {
