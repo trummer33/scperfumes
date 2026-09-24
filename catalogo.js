@@ -2,6 +2,7 @@ const BRAND_ORDER = ["Maison Alhambra", "Lattafa", "Al Wataniah", "French Avenue
 const CATEGORY_ORDER = ["Feminina", "Masculina", "Compartilhável"];
 const esc = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
 const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const WHATSAPP_NUMBER = "5567998034726";
 
 class CatalogApp {
   constructor() {
@@ -77,6 +78,8 @@ class CatalogApp {
     document.getElementById("modal-brand").textContent = item.marca;
     document.getElementById("modal-title").textContent = item.nome;
     document.getElementById("modal-desc").textContent = item.desc;
+    const contact = document.getElementById("product-contact");
+    contact.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Olá! Tenho interesse no perfume ${item.nome}. Poderia me ajudar com mais informações?`)}`;
     document.getElementById("modal-notes").innerHTML = `<li><strong>Saída:</strong> ${esc(item.notas?.saida || "--")}</li><li><strong>Coração:</strong> ${esc(item.notas?.coracao || "--")}</li><li><strong>Fundo:</strong> ${esc(item.notas?.fundo || "--")}</li>`;
     this.modal.showModal();
   }
