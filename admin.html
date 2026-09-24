@@ -121,8 +121,11 @@
     <div class="login-screen" id="login-screen">
         <div class="login-box">
             <h2>S&amp;C <span>Admin</span></h2>
-            <p>Digite a senha mestra para acessar o catálogo.</p>
+            <p>Entre com seu usuário e senha para administrar o catálogo.</p>
             <form id="login-form">
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <input type="text" id="login-user" placeholder="Usuário" required autocomplete="username">
+                </div>
                 <div class="form-group" style="margin-bottom: 15px;">
                     <input type="password" id="login-pass" placeholder="Senha de acesso" required autocomplete="current-password">
                 </div>
@@ -374,18 +377,20 @@
 
         document.getElementById("login-form").addEventListener("submit", async (e) => {
             e.preventDefault();
+            const username = document.getElementById("login-user").value.trim();
             const password = document.getElementById("login-pass").value;
             try {
                 const response = await fetch("/api/admin-auth", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ password })
+                    body: JSON.stringify({ username, password })
                 });
                 if (!response.ok) throw new Error();
+                document.getElementById("login-user").value = "";
                 document.getElementById("login-pass").value = "";
                 showAdmin();
             } catch {
-                toast("Senha incorreta ou acesso não configurado.", true);
+                toast("Usuário ou senha incorretos.", true);
             }
         });
 
