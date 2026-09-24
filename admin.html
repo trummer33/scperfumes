@@ -165,7 +165,7 @@
                 <button class="nav-item active" data-target="dashboard"><i class="fas fa-chart-line"></i> Dashboard</button>
                 <button class="nav-item" data-target="products"><i class="fas fa-wine-bottle"></i> Perfumes</button>
                 <button class="nav-item" data-target="add-product"><i class="fas fa-plus-circle"></i> Novo Perfume</button>
-                <button class="nav-item btn-logout" id="btn-logout"><i class="fas fa-sign-out-alt"></i> Sair</button>
+                <button class="nav-item btn-logout" id="btn-logout"><i class="fas fa-sign-out-alt"></i> Sair e voltar</button>
             </nav>
         </aside>
 
@@ -176,7 +176,7 @@
                     <button class="btn btn-primary" id="btn-export" title="Gera o catalog.json para substituir no projeto e publicar na Vercel">
                         <i class="fas fa-download"></i><span class="btn-label">Baixar catalog.json</span>
                     </button>
-                    <a href="index.html" target="_blank" class="btn btn-secondary">Ver Vitrine</a>
+                    <a href="/" class="btn btn-secondary">Voltar à Vitrine</a>
                     <a href="catalogo.html" target="_blank" class="btn btn-secondary">Ver Catálogo</a>
                 </div>
             </div>
@@ -383,8 +383,8 @@
         });
 
         document.getElementById("btn-logout").addEventListener("click", async () => {
-            await fetch("/api/admin-auth", { method: "DELETE" });
-            location.reload();
+            try { await fetch("/api/admin-auth", { method: "DELETE" }); } catch { /* limpa a sessão no próximo acesso */ }
+            location.assign("/");
         });
 
         async function showAdmin() {
