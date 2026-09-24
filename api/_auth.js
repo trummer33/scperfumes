@@ -8,14 +8,18 @@ function sameValue(left, right) {
 }
 
 function users() {
+  const projectUsers = ['sandra_sc', 'cleber_sc']
+    .filter((username) => process.env[username])
+    .map((username) => ({ username, password: process.env[username] }));
   try {
     const parsed = JSON.parse(process.env.ADMIN_USERS || '[]');
-    return Array.isArray(parsed) ? parsed.filter((user) => user?.username && user?.password) : [];
-  } catch { return []; }
+    const configured = Array.isArray(parsed) ? parsed.filter((user) => user?.username && user?.password) : [];
+    return [...projectUsers, ...configured];
+  } catch { return projectUsers; }
 }
 
 function sessionToken(username) {
-  const user = users().find((entry) => entry.username === username);
+  const user = users().find((entry) => entry.username === String(username).toLowerCase());
   return user ? `${username}.${crypto.createHmac('sha256', user.password).update('sc-perfumes-admin-v2').digest('hex')}` : '';
 }
 
@@ -27,7 +31,7 @@ function hasSession(req) {
 }
 
 function authenticate(username, password) {
-  const user = users().find((entry) => entry.username === username);
+  const user = users().find((entry) => entry.username === String(username).toLowerCase());
   return user && sameValue(password, user.password) ? user : null;
 }
 
