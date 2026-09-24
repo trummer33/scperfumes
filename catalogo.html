@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0B0A09">
+    <meta name="description" content="Catálogo completo da S&C Perfumes.">
+    <title>Catálogo Completo | S&C Perfumes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo" aria-label="S&C Perfumes — início"><span class="logo-monogram">S&amp;C</span><span class="logo-wordmark">PERFUMES</span></a>
+            <nav class="nav-links" aria-label="Navegação principal">
+                <a href="/">Destaques</a>
+                <a href="catalogo.html" aria-current="page">Catálogo</a>
+                <a href="https://www.instagram.com/sc._perfumes/" target="_blank" rel="noopener noreferrer" class="nav-social" aria-label="Instagram"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg> Instagram</a>
+            </nav>
+        </div>
+    </header>
+    <main class="catalog-page">
+        <header class="catalog-intro">
+            <p class="hero-eyebrow">S&amp;C PERFUMES</p>
+            <h1>Catálogo Completo</h1>
+            <p>Explore toda a coleção e encontre sua próxima assinatura olfativa.</p>
+        </header>
+        <nav class="brand-filters" id="brand-filters" aria-label="Filtro de marcas"></nav>
+        <nav class="category-filters" id="category-filters" aria-label="Filtro de categoria"></nav>
+        <p class="catalog-count" id="catalog-count" aria-live="polite"></p>
+        <div class="perfume-grid" id="perfume-grid" role="region" aria-live="polite"><div class="loading"><span class="spinner" aria-hidden="true"></span> Carregando catálogo...</div></div>
+    </main>
+    <dialog class="modal" id="modal" aria-labelledby="modal-title">
+        <div class="modal-box"><button class="btn-close" type="button" data-close aria-label="Fechar"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="modal-layout"><div class="modal-img-container"><img src="" alt="" id="modal-img" decoding="async"></div><div class="modal-info-container"><div class="modal-info-content"><span class="modal-brand" id="modal-brand"></span><h2 class="modal-title" id="modal-title"></h2><div class="modal-divider"></div><p class="modal-desc" id="modal-desc"></p><div class="pyramid"><h3>Pirâmide Olfativa</h3><ul id="modal-notes"></ul></div><div class="modal-action"><a href="https://www.instagram.com/sc._perfumes/" target="_blank" rel="noopener noreferrer" class="btn btn-instagram">Tenho Interesse</a></div></div></div></div></div>
+    </dialog>
+    <script src="catalogo.js" defer></script>
+</body>
+</html>

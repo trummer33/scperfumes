@@ -347,6 +347,26 @@ button {
     letter-spacing: 0.5px;
 }
 
+.catalog-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: calc(var(--nav-h, 68px) + var(--spacing-2xl)) var(--spacing-md) var(--spacing-3xl);
+}
+
+.catalog-intro {
+    max-width: 700px;
+    margin: 0 auto var(--spacing-2xl);
+    text-align: center;
+}
+
+.catalog-intro h1 {
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    margin: var(--spacing-sm) 0;
+}
+
+.catalog-intro p:not(.hero-eyebrow), .catalog-count { color: var(--color-text-secondary); }
+.catalog-count { text-align: center; margin: 0 0 var(--spacing-lg); font-size: .9rem; }
+
 /* ==========================================================================
    GALERIA / VITRINE
    ========================================================================== */
@@ -821,6 +841,7 @@ html { scroll-padding-top: calc(var(--nav-h) + 16px); }
     .logo-wordmark { font-size: .5rem; letter-spacing: .16em; padding-left: 7px; white-space: nowrap; }
     .nav-links { gap: 0; flex: 0 0 auto; }
     .nav-links > a:not(.nav-social) { display: none; }
+    .nav-links > a[href="catalogo.html"] { display: inline-flex; font-size: .58rem; letter-spacing: .1em; white-space: nowrap; }
     .nav-social { font-size: 0; gap: 0; width: 40px; height: 40px; justify-content: center; }
     .nav-social .icon { width: 20px; height: 20px; }
     .premium-section { padding: var(--spacing-xl) var(--spacing-md) 0; }
