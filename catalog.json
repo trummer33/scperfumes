@@ -152,5 +152,19 @@
       "coracao": "Cacau, Noz-Moscada e Davana",
       "fundo": "Baunilha Bourbon, Âmbar e Vetiver"
     }
+  },
+  {
+    "id": "12",
+    "nome": "Silver Scent Intense",
+    "marca": "Jacques Bogart",
+    "categoria": "Masculina",
+    "img": "https://i.postimg.cc/yxTyDbHK/bcf35139-5b56-4358-aa79-193152799edb.jpg",
+    "desc": "Intensa e elegante, esta fragrância amadeirada aromática combina frescor cítrico e especiarias com uma base quente e marcante. Uma escolha de presença para ocasiões noturnas e dias mais frios.",
+    "destaque": true,
+    "notas": {
+      "saida": "Limão, Bergamota e Flor de Laranjeira",
+      "coracao": "Lavanda, Cardamomo e Noz-Moscada",
+      "fundo": "Fava Tonka, Vetiver e Madeiras Ambaradas"
+    }
   }
 ]
