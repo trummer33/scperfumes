@@ -62,7 +62,7 @@
     "categoria": "Compartilhável",
     "img": "https://i.postimg.cc/j5dVWzHW/d64df76c-03cb-4ea7-8632-1ec399f6f644.jpg",
     "desc": "Perfume Oriental Amadeirado Compartilhável lançado em 2016. Uma criação marcante que une a suculência exótica do abacaxi ao toque refinado do açafrão, evoluindo para um corpo verde e floral equilibrado por um fundo nobre de cedro, âmbar e oud.",
-    "destaque": true,
+    "destaque": false,
     "notas": {
       "saida": "Abacaxi e Açafrão",
       "coracao": "Bálsamo de Abeto e Jasmim",
@@ -90,7 +90,7 @@
     "categoria": "Feminina",
     "img": "https://i.postimg.cc/G2h0BkFH/b99fd9f2-81e6-47a3-9001-20b460815621.jpg",
     "desc": "Uma fragrância majestosa e envolvente que celebra a elegância oriental. Traz uma abertura rica e frutada combinada a especiarias finas, evoluindo para um buquê floral opulento e finalizando com uma base quente, ambarada e sofisticada digna da realeza árabe.",
-    "destaque": true,
+    "destaque": false,
     "notas": {
       "saida": "Frutas Vermelhas, Bergamota e Açafrão",
       "coracao": "Rosa Damascena, Jasmim e Flores Brancas",
@@ -118,7 +118,7 @@
     "categoria": "Masculina",
     "img": "https://i.postimg.cc/VvwFLc22/94abbbf1-4d07-4aee-91f5-7031e3a016bc.jpg",
     "desc": "Uma fragrância oriental amadeirada de presença marcante. Notas cítricas e aromáticas conduzem a um corpo especiado, finalizado por madeiras quentes, âmbar e almíscar para um rastro sofisticado e envolvente.",
-    "destaque": true,
+    "destaque": false,
     "notas": {
       "saida": "Bergamota, Limão e Notas Aromáticas",
       "coracao": "Lavanda, Jasmim e Especiarias",
@@ -132,7 +132,7 @@
     "categoria": "Compartilhável",
     "img": "https://i.postimg.cc/PJHMrkBG/547b2027-d522-4023-b276-155ffc66fc36.jpg",
     "desc": "Uma assinatura oriental compartilhável, intensa e refinada. A abertura especiada evolui para um coração floral elegante e uma base profunda de madeiras, âmbar e almíscar, ideal para quem aprecia fragrâncias de presença.",
-    "destaque": true,
+    "destaque": false,
     "notas": {
       "saida": "Açafrão, Bergamota e Especiarias",
       "coracao": "Rosa, Jasmim e Flores Brancas",
@@ -160,7 +160,7 @@
     "categoria": "Masculina",
     "img": "https://i.postimg.cc/yxTyDbHK/bcf35139-5b56-4358-aa79-193152799edb.jpg",
     "desc": "Intensa e elegante, esta fragrância amadeirada aromática combina frescor cítrico e especiarias com uma base quente e marcante. Uma escolha de presença para ocasiões noturnas e dias mais frios.",
-    "destaque": true,
+    "destaque": false,
     "notas": {
       "saida": "Limão, Bergamota e Flor de Laranjeira",
       "coracao": "Lavanda, Cardamomo e Noz-Moscada",

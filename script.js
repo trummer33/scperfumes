@@ -35,6 +35,7 @@ const FALLBACK_CATALOG = [
 
 const BRAND_ORDER = ["Maison Alhambra", "Lattafa", "Al Wataniah", "French Avenue", "Sahari"];
 const CATEGORY_ORDER = ["Feminina", "Masculina", "Compartilhável"];
+const HIGHLIGHT_LIMIT = 6;
 const IMG_FALLBACK = "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop";
 const REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)");
 
@@ -165,7 +166,7 @@ class PerfumeApp {
     /** Marca e categoria funcionam juntas (ex.: Lattafa + Feminina). */
     applyFilters() {
         const byBrand = this.currentBrand === "Destaques"
-            ? this.catalog.filter(p => p.destaque === true)
+            ? this.catalog.filter(p => p.destaque === true).slice(0, HIGHLIGHT_LIMIT)
             : this.catalog.filter(p => p.marca === this.currentBrand);
         const filtered = this.currentCategory === "Todas"
             ? byBrand
