@@ -121,9 +121,11 @@ class PerfumeApp {
             const card = e.target.closest(".card");
             if (card) { e.preventDefault(); this.openModal(card.dataset.id); }
         });
-        this.perfumeGrid.addEventListener("load", (e) => {
+        const markImageLoaded = (e) => {
             if (e.target.tagName === "IMG") e.target.classList.add("loaded");
-        }, true);
+        };
+        this.perfumeGrid.addEventListener("load", markImageLoaded, true);
+        this.premiumGrid.addEventListener("load", markImageLoaded, true);
 
         // Filtros (listener registrado uma única vez)
         this.brandFiltersContainer.addEventListener("click", (e) => {
@@ -194,6 +196,9 @@ class PerfumeApp {
                 <div class="card-img-box"><img src="${esc(product.img)}" alt="${esc(product.nome)}" loading="lazy" decoding="async" width="640" height="800"></div>
                 <div class="card-info"><span class="card-brand">${esc(product.marca)}</span><h3 class="card-title">${esc(product.nome)}</h3>${formatPrice(product.preco) ? `<span class="premium-price">${formatPrice(product.preco)}</span>` : ""}${formatStock(product.estoque) ? `<span class="premium-stock ${Number(product.estoque) === 0 ? "is-sold-out" : ""}">${formatStock(product.estoque)}</span>` : ""}<span class="btn-discover">Conhecer a Seleção</span></div>
             </article>`).join("");
+        this.premiumGrid.querySelectorAll("img").forEach((img) => {
+            if (img.complete && img.naturalWidth) img.classList.add("loaded");
+        });
     }
 
     /** Marca e categoria funcionam juntas (ex.: Lattafa + Feminina). */
