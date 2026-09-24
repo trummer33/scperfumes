@@ -258,6 +258,17 @@ button {
     margin: 0 0 var(--spacing-md);
 }
 
+.premium-stock {
+    color: var(--color-text-secondary);
+    font-size: .76rem;
+    letter-spacing: .08em;
+    margin: calc(-1 * var(--spacing-sm)) 0 var(--spacing-md);
+    text-transform: uppercase;
+}
+.premium-stock.is-sold-out { color: var(--color-rose-gold); }
+.modal-price { color: var(--color-gold-light) !important; }
+.modal-stock { color: var(--color-text-primary) !important; }
+
 /* ==========================================================================
    HERO SECTION - Design Elegante e Moderno
    ========================================================================== */

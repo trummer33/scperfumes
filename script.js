@@ -36,11 +36,15 @@ const FALLBACK_CATALOG = [
 const BRAND_ORDER = ["Maison Alhambra", "Lattafa", "Al Wataniah", "French Avenue", "Sahari", "Jacques Bogart", "Orientica", "Fragrance World", "Ard Al Zaafaran"];
 const CATEGORY_ORDER = ["Feminina", "Masculina", "Compartilhável"];
 const HIGHLIGHT_LIMIT = 6;
+const WHATSAPP_NUMBER = "5567998034726";
 const REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const formatPrice = (value) => Number.isFinite(Number(value)) && Number(value) > 0
     ? new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(Number(value))
+    : "";
+const formatStock = (value) => Number.isInteger(Number(value)) && Number(value) >= 0
+    ? Number(value) === 0 ? "Indisponível" : `${Number(value)} ${Number(value) === 1 ? "unidade disponível" : "unidades disponíveis"}`
     : "";
 
 class PerfumeApp {
@@ -188,7 +192,7 @@ class PerfumeApp {
         this.premiumGrid.innerHTML = premium.map((product) => `
             <article class="card" data-id="${esc(product.id)}" tabindex="0" role="button" aria-label="Ver ${esc(product.nome)}">
                 <div class="card-img-box"><img src="${esc(product.img)}" alt="${esc(product.nome)}" loading="lazy" decoding="async" width="640" height="800"></div>
-                <div class="card-info"><span class="card-brand">${esc(product.marca)}</span><h3 class="card-title">${esc(product.nome)}</h3>${formatPrice(product.preco) ? `<span class="premium-price">${formatPrice(product.preco)}</span>` : ""}<span class="btn-discover">Conhecer a Seleção</span></div>
+                <div class="card-info"><span class="card-brand">${esc(product.marca)}</span><h3 class="card-title">${esc(product.nome)}</h3>${formatPrice(product.preco) ? `<span class="premium-price">${formatPrice(product.preco)}</span>` : ""}${formatStock(product.estoque) ? `<span class="premium-stock ${Number(product.estoque) === 0 ? "is-sold-out" : ""}">${formatStock(product.estoque)}</span>` : ""}<span class="btn-discover">Conhecer a Seleção</span></div>
             </article>`).join("");
     }
 
@@ -243,8 +247,12 @@ class PerfumeApp {
         document.getElementById("modal-brand").textContent = perfume.marca;
         document.getElementById("modal-title").textContent = perfume.nome;
         document.getElementById("modal-desc").textContent = perfume.desc;
+        const contact = document.getElementById("product-contact");
+        contact.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Olá! Tenho interesse no perfume ${perfume.nome}. Poderia me ajudar com mais informações?`)}`;
 
         document.getElementById("modal-notes").innerHTML = `
+            ${formatPrice(perfume.preco) ? `<li class="modal-price"><strong>Preço:</strong> ${formatPrice(perfume.preco)}</li>` : ""}
+            ${formatStock(perfume.estoque) ? `<li class="modal-stock"><strong>Estoque:</strong> ${formatStock(perfume.estoque)}</li>` : ""}
             <li><strong>Saída:</strong> ${esc(perfume.notas?.saida || "--")}</li>
             <li><strong>Coração:</strong> ${esc(perfume.notas?.coracao || "--")}</li>
             <li><strong>Fundo:</strong> ${esc(perfume.notas?.fundo || "--")}</li>
