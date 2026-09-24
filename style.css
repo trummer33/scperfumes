@@ -846,22 +846,22 @@ html { scroll-padding-top: calc(var(--nav-h) + 16px); }
    RESPONSIVIDADE
    ========================================================================== */
 @media (max-width: 768px) {
-    :root { --nav-h: 58px; }
+    :root { --nav-h: 104px; }
 
     .hero { padding: var(--spacing-lg) var(--spacing-md); }
     .hero h2 { font-size: 2.2rem; }
     .brand-mark { gap: 10px; padding: 11px 15px; }
     .brand-mark-name { font-size: .62rem; letter-spacing: .24em; padding-left: 10px; }
     .hero p { font-size: 1rem; }
-    .navbar { padding: 0 12px; }
-    .nav-container { gap: 8px; min-width: 0; }
+    .navbar { height: var(--nav-h); padding: 8px 12px; }
+    .nav-container { flex-direction: column; gap: 4px; justify-content: center; min-width: 0; }
     .logo { gap: 7px; min-width: 0; }
-    .logo-monogram { font-size: 1.05rem; white-space: nowrap; }
-    .logo-wordmark { font-size: .5rem; letter-spacing: .16em; padding-left: 7px; white-space: nowrap; }
-    .nav-links { flex: 1; justify-content: center; gap: 8px; min-width: 0; }
+    .logo-monogram { font-size: 1.1rem; white-space: nowrap; }
+    .logo-wordmark { font-size: .54rem; letter-spacing: .16em; padding-left: 7px; white-space: nowrap; }
+    .nav-links { width: 100%; justify-content: center; gap: 10px; min-width: 0; }
     .nav-links > a:not(.nav-social) { display: none; }
-    .nav-links > a[href="catalogo.html"] { display: inline-flex; font-size: .56rem; letter-spacing: .06em; white-space: nowrap; }
-    .nav-social { font-size: .56rem; gap: 4px; width: auto; height: 40px; justify-content: center; }
+    .nav-links > a[href="catalogo.html"] { display: inline-flex; font-size: .6rem; letter-spacing: .05em; white-space: nowrap; }
+    .nav-social { font-size: .6rem; gap: 4px; width: auto; height: 30px; justify-content: center; }
     .nav-social .icon { width: 14px; height: 14px; }
     .premium-section { padding: var(--spacing-xl) var(--spacing-md) 0; }
 
