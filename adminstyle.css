@@ -642,3 +642,9 @@ select option { background: var(--color-bg-dark-alt); }
 .order-request p { margin: 8px 0 0; white-space: pre-wrap; }
 .order-request time { flex: 0 0 auto; }
 @media (max-width: 640px) { .order-request { display: grid; gap: 8px; } }
+.order-status { display: inline-block; width: fit-content; margin-bottom: 7px; padding: 3px 7px; color: var(--gold); font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; background: rgba(212,175,55,.1); }
+.order-request.is-completed { opacity: .68; }
+.order-request.is-completed .order-status { color: #6f9d74; background: rgba(111,157,116,.12); }
+.order-request-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 8px; }
+.order-request-actions time { width: 100%; text-align: right; }
+@media (max-width: 640px) { .order-request-actions { justify-content: flex-start; } .order-request-actions time { text-align: left; } }
