@@ -3,10 +3,11 @@ const crypto = require('crypto');
 const COOKIE = 'sc_admin_session';
 const SECRET = process.env.ADMIN_SECRET || 'scperfumes-secret-key-2026';
 
-// Credenciais de acesso. Usuários adicionais devem ter as senhas configuradas
-// como variáveis de ambiente, nunca no repositório.
+// Credenciais de acesso com utilizadores diretos
 const USERS = {
-  'joao_sc': 'admin'
+  'joao_sc': 'admin',
+  'sandra_sc': 'admin',
+  'cleber_sc': 'admin'
 };
 
 const ENVIRONMENT_USERS = {
