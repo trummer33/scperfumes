@@ -61,7 +61,6 @@ class PerfumeApp {
         await this.loadCatalog();
         this.renderBrandFilters();
         this.renderCategoryFilters();
-        this.renderPremium();
         this.applyFilters();
     }
 
@@ -98,9 +97,6 @@ class PerfumeApp {
         this.perfumeGrid = document.getElementById("perfume-grid");
         this.brandFiltersContainer = document.getElementById("brand-filters");
         this.categoryFiltersContainer = document.getElementById("category-filters");
-        this.premiumSection = document.getElementById("exclusivos");
-        this.premiumGrid = document.getElementById("premium-grid");
-        this.premiumNav = document.getElementById("nav-exclusivos");
 
         // Grid: clique, teclado e imagens (fallback + fade-in)
         this.perfumeGrid.addEventListener("click", (e) => {
@@ -112,20 +108,10 @@ class PerfumeApp {
             const card = e.target.closest(".card");
             if (card) { e.preventDefault(); this.openModal(card.dataset.id); }
         });
-        this.premiumGrid.addEventListener("click", (e) => {
-            const card = e.target.closest(".card");
-            if (card) this.openModal(card.dataset.id);
-        });
-        this.premiumGrid.addEventListener("keydown", (e) => {
-            if (e.key !== "Enter" && e.key !== " ") return;
-            const card = e.target.closest(".card");
-            if (card) { e.preventDefault(); this.openModal(card.dataset.id); }
-        });
         const markImageLoaded = (e) => {
             if (e.target.tagName === "IMG") e.target.classList.add("loaded");
         };
         this.perfumeGrid.addEventListener("load", markImageLoaded, true);
-        this.premiumGrid.addEventListener("load", markImageLoaded, true);
 
         // Filtros (listener registrado uma única vez)
         this.brandFiltersContainer.addEventListener("click", (e) => {
@@ -185,20 +171,6 @@ class PerfumeApp {
             btn.setAttribute("aria-pressed", active);
         });
         this.applyFilters();
-    }
-
-    renderPremium() {
-        const premium = this.catalog.filter((product) => product.premium === true && product.disponivel !== false);
-        this.premiumSection.hidden = premium.length === 0;
-        this.premiumNav.hidden = premium.length === 0;
-        this.premiumGrid.innerHTML = premium.map((product) => `
-            <article class="card" data-id="${esc(product.id)}" tabindex="0" role="button" aria-label="Ver ${esc(product.nome)}">
-                <div class="card-img-box"><img src="${esc(product.img)}" alt="${esc(product.nome)}" loading="lazy" decoding="async" width="640" height="800"></div>
-                <div class="card-info"><span class="card-brand">${esc(product.marca)}</span><h3 class="card-title">${esc(product.nome)}</h3>${formatPrice(product.preco) ? `<span class="premium-price">${formatPrice(product.preco)}</span>` : ""}${formatStock(product.estoque) ? `<span class="premium-stock ${Number(product.estoque) === 0 ? "is-sold-out" : ""}">${formatStock(product.estoque)}</span>` : ""}<span class="btn-discover">Conhecer a Seleção</span></div>
-            </article>`).join("");
-        this.premiumGrid.querySelectorAll("img").forEach((img) => {
-            if (img.complete && img.naturalWidth) img.classList.add("loaded");
-        });
     }
 
     /** Marca e categoria funcionam juntas (ex.: Lattafa + Feminina). */
