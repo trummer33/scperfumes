@@ -3,6 +3,9 @@ const CATEGORY_ORDER = ["Feminina", "Masculina", "Compartilhável"];
 const esc = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
 const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const WHATSAPP_NUMBER = "5567998034726";
+const formatPrice = (value) => Number.isFinite(Number(value)) && Number(value) > 0
+  ? new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(Number(value))
+  : "";
 
 class CatalogApp {
   constructor() {
@@ -65,7 +68,7 @@ class CatalogApp {
   applyFilters() {
     const filtered = this.products.filter((item) => item.disponivel !== false && (this.brand === "Todas" || item.marca === this.brand) && (this.category === "Todas" || item.categoria === this.category));
     document.getElementById("catalog-count").textContent = `${filtered.length} ${filtered.length === 1 ? "fragrância encontrada" : "fragrâncias encontradas"}`;
-    this.grid.innerHTML = filtered.length ? filtered.map((item) => `<article class="card" data-id="${esc(item.id)}" tabindex="0" role="button" aria-label="Ver ${esc(item.nome)}"><div class="card-img-box"><img src="${esc(item.img)}" alt="${esc(item.nome)}" loading="lazy" decoding="async" fetchpriority="low" width="640" height="800"></div><div class="card-info"><span class="card-brand">${esc(item.marca)}</span><h2 class="card-title">${esc(item.nome)}</h2><span class="btn-discover">Descobrir Essência</span></div></article>`).join("") : '<div class="loading">Nenhuma fragrância encontrada com esses filtros.</div>';
+    this.grid.innerHTML = filtered.length ? filtered.map((item) => `<article class="card" data-id="${esc(item.id)}" tabindex="0" role="button" aria-label="Ver ${esc(item.nome)}"><div class="card-img-box"><img src="${esc(item.img)}" alt="${esc(item.nome)}" loading="lazy" decoding="async" fetchpriority="low" width="640" height="800"></div><div class="card-info"><span class="card-brand">${esc(item.marca)}</span><h2 class="card-title">${esc(item.nome)}</h2>${formatPrice(item.preco) ? `<span class="premium-price">${formatPrice(item.preco)}</span>` : ""}<span class="btn-discover">Descobrir Essência</span></div></article>`).join("") : '<div class="loading">Nenhuma fragrância encontrada com esses filtros.</div>';
     this.grid.querySelectorAll("img").forEach((img) => { if (img.complete && img.naturalWidth) img.classList.add("loaded"); });
     this.grid.querySelectorAll("img").forEach((img) => img.addEventListener("load", () => img.classList.add("loaded"), { once: true }));
   }
@@ -80,7 +83,7 @@ class CatalogApp {
     document.getElementById("modal-desc").textContent = item.desc;
     const contact = document.getElementById("product-contact");
     contact.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Olá! Tenho interesse no perfume ${item.nome}. Poderia me ajudar com mais informações?`)}`;
-    document.getElementById("modal-notes").innerHTML = `<li><strong>Saída:</strong> ${esc(item.notas?.saida || "--")}</li><li><strong>Coração:</strong> ${esc(item.notas?.coracao || "--")}</li><li><strong>Fundo:</strong> ${esc(item.notas?.fundo || "--")}</li>`;
+    document.getElementById("modal-notes").innerHTML = `${formatPrice(item.preco) ? `<li class="modal-price"><strong>Preço:</strong> ${formatPrice(item.preco)}</li>` : ""}<li><strong>Saída:</strong> ${esc(item.notas?.saida || "--")}</li><li><strong>Coração:</strong> ${esc(item.notas?.coracao || "--")}</li><li><strong>Fundo:</strong> ${esc(item.notas?.fundo || "--")}</li>`;
     this.modal.showModal();
   }
 }
