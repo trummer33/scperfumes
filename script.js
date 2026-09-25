@@ -227,6 +227,7 @@ class PerfumeApp {
                 <div class="card-info">
                     <span class="card-brand">${esc(p.marca)}</span>
                     <h3 class="card-title">${esc(p.nome)}</h3>
+                    ${formatPrice(p.preco) ? `<span class="premium-price">${formatPrice(p.preco)}</span>` : ""}
                     <span class="btn-discover">Descobrir Essência</span>
                 </div>
             </article>`
