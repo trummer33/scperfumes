@@ -56,14 +56,12 @@
             <p class="hero-lead">Escolhas marcantes, atendimento próximo e uma coleção feita para encontrar a fragrância que fala por você.</p>
             <div class="hero-actions">
                 <a href="/" data-scroll="marcas" class="btn btn-primary">Explorar coleção <span aria-hidden="true">↓</span></a>
-                <a href="https://wa.me/5567998034726" data-site-whatsapp target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Falar no WhatsApp</a>
             </div>
             <dl class="hero-highlights" aria-label="Diferenciais S&C Perfumes">
                 <div><dt>Curadoria</dt><dd>Fragrâncias selecionadas</dd></div>
                 <div><dt>Atendimento</dt><dd>Orientação personalizada</dd></div>
-                <div><dt>Disponibilidade</dt><dd>Estoque atualizado</dd></div>
-                <div><dt>Encomenda</dt><dd>Alguns perfumes sob encomenda</dd></div>
             </dl>
+            <button class="order-trigger" type="button" data-order-open>Não encontrou o que procura? Solicite uma encomenda</button>
         </div>
         <aside class="hero-card" aria-label="Descubra a seleção premium">
             <p>COLEÇÃO RESERVA</p>
@@ -110,6 +108,23 @@
         </div>
     </footer>
 
+
+    <dialog class="order-dialog" id="order-dialog" aria-labelledby="order-title">
+        <form class="order-form" id="order-form" method="dialog">
+            <button class="order-close" type="button" data-order-close aria-label="Fechar formulário">×</button>
+            <p class="section-kicker">ENCOMENDA</p>
+            <h2 id="order-title">Procura uma fragrância específica?</h2>
+            <p>Envie seu pedido. Nossa equipe recebe a solicitação diretamente no painel e retorna pelo contato informado.</p>
+            <label>Seu nome<input name="name" autocomplete="name" maxlength="80" required></label>
+            <label>WhatsApp ou Instagram<input name="contact" autocomplete="tel" maxlength="100" required></label>
+            <label>Perfume que procura<input name="fragrance" maxlength="120" required placeholder="Ex.: marca, nome ou inspiração"></label>
+            <label>Detalhes opcionais<textarea name="details" maxlength="600" rows="3" placeholder="Tamanho, preferência ou observação"></textarea></label>
+            <input class="order-honeypot" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <button class="btn btn-primary" type="submit">Enviar pedido</button>
+            <p class="order-feedback" id="order-feedback" role="status"></p>
+        </form>
+    </dialog>
+
     <!-- MODAL -->
     <dialog class="modal" id="modal" aria-labelledby="modal-title">
         <div class="modal-box">
@@ -148,6 +163,6 @@
     </dialog>
 
     <!-- Scripts -->
-    <script src="site-settings.js" defer></script><script type="module" src="script.js"></script>
+    <script src="site-settings.js" defer></script><script src="order-request.js" defer></script><script type="module" src="script.js"></script>
 </body>
 </html>
