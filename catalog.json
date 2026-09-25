@@ -5,8 +5,11 @@
     "marca": "Maison Alhambra",
     "categoria": "Feminina",
     "img": "https://i.postimg.cc/3JmgMKYq/Screenshot-1.png",
+    "preco": null,
+    "estoque": null,
     "desc": "Luxo engarrafado em um frasco vermelho intenso. Uma fragrância amendoada e quente que exala poder, perfeitamente equilibrada com notas amadeiradas e doces.",
-    "destaque": true,
+    "destaque": false,
+    "premium": false,
     "notas": {
       "saida": "Amêndoa Amarga e Açafrão",
       "coracao": "Jasmim Egípcio e Cedro",
@@ -19,8 +22,11 @@
     "marca": "French Avenue",
     "categoria": "Masculina",
     "img": "https://i.postimg.cc/3RLs2d1S/Screenshot-3.png",
+    "preco": null,
+    "estoque": null,
     "desc": "O epítome da sofisticação noturna. Uma fragrância quente, especiada e densa, formulada para quem aprecia o luxo absoluto e notas maduras.",
-    "destaque": true,
+    "destaque": false,
+    "premium": false,
     "notas": {
       "saida": "Cardamomo e Canela",
       "coracao": "Couro, Íris e Tabaco",
@@ -43,12 +49,15 @@
   },
   {
     "id": "4",
-    "nome": "Sabah Al Ward",
+    "nome": "Sabah Al Ward Delilah",
     "marca": "Al Wataniah",
     "categoria": "Feminina",
     "img": "https://i.postimg.cc/X7dw4LKp/c14d8048-10b6-4de7-bdba-c55f4ffd59d8.jpg",
+    "preco": null,
+    "estoque": null,
     "desc": "A feminilidade traduzida em um frasco escultural e misterioso. Uma fragrância Oriental Floral envolvente que combina notas cítricas luminosas, um toque sutilmente picante e a doçura sedutora da baunilha e do cacau.",
     "destaque": true,
+    "premium": false,
     "notas": {
       "saida": "Tangerina e Pimenta Rosa",
       "coracao": "Cacau, Flor de Laranjeira e Jasmim Sambac",
@@ -173,8 +182,11 @@
     "marca": "Maison Alhambra",
     "categoria": "Masculina",
     "img": "https://i.postimg.cc/yYDYLSJC/df12d22c-a303-4e0c-85c9-fd24b34009de.jpg",
+    "preco": null,
+    "estoque": null,
     "desc": "Uma fragrância masculina limpa e versátil, com frescor aromático na abertura e um fundo amadeirado elegante. Ideal para o dia a dia e ocasiões casuais.",
     "destaque": false,
+    "premium": false,
     "notas": {
       "saida": "Bergamota, Limão e Notas Aromáticas",
       "coracao": "Lavanda, Gerânio e Especiarias",
@@ -201,8 +213,11 @@
     "marca": "Orientica",
     "categoria": "Compartilhável",
     "img": "https://i.postimg.cc/02z2VJ6R/ac532437-0543-4513-9bab-f8d8168179fb.jpg",
+    "preco": null,
+    "estoque": null,
     "desc": "Uma composição oriental refinada que equilibra doçura, especiarias e madeiras quentes. Marcante, envolvente e indicada para momentos especiais.",
     "destaque": false,
+    "premium": false,
     "notas": {
       "saida": "Bergamota, Canela e Especiarias",
       "coracao": "Rosa, Jasmim e Notas Ambaradas",
@@ -369,8 +384,11 @@
     "marca": "Lattafa",
     "categoria": "Masculina",
     "img": "https://i.postimg.cc/L6brFHTS/3ccae4f4-977e-4b66-ae57-86a8fd2ade3c.jpg",
+    "preco": null,
+    "estoque": null,
     "desc": "Um perfume Oriental masculino lançado em 2021. Especiarias e tabaco criam uma abertura intensa, evoluindo para café e íris sobre uma base quente de baunilha, âmbar e resinas.",
-    "destaque": false,
+    "destaque": true,
+    "premium": false,
     "notas": {
       "saida": "Pimenta Preta, Tabaco e Abacaxi",
       "coracao": "Patchouli, Café e Íris",
@@ -389,6 +407,210 @@
       "saida": "S’mores de Morango e Groselha Preta",
       "coracao": "Jasmim e Flor de Laranjeira",
       "fundo": "Baunilha, Caramelo, Âmbar e Almíscar"
+    }
+  },
+  {
+    "id": "1790263250280",
+    "nome": "Sultan Al Lail",
+    "marca": "Al Wataniah",
+    "categoria": "Masculina",
+    "img": "https://i.postimg.cc/qMQQP0sB/0f4734f8-a80a-4d0a-b8b0-d31529a3fabe.jpg",
+    "preco": null,
+    "estoque": null,
+    "desc": "Conhecido como o \"Sultão da Noite\", é uma fragrância aromática cítrica e amadeirada feita para impor presença. Abre com o impacto suculento e energizante da laranja sanguínea e bagas de zimbro, evolui para um coração aromático e picante com lavanda e sálvia, finalizando com uma base terrosa e nobre de vetiver, cedro e patchouli.",
+    "destaque": false,
+    "premium": false,
+    "notas": {
+      "saida": "Laranja Sanguínea, Bagas de Zimbro e Limão Siciliano",
+      "coracao": "Lavanda, Pimenta, Sálvia Esclaréia e Gerânio",
+      "fundo": "Vetiver, Cedro e Patchouli"
+    }
+  },
+  {
+    "id": "1790263599778",
+    "nome": "Club De Nuit Maleka",
+    "marca": "Ard Al Zaafaran",
+    "categoria": "Feminina",
+    "img": "https://i.postimg.cc/pL4Qvdy0/d07175ce-bce5-4f0d-8552-c955f3c6a4f1.jpg",
+    "preco": null,
+    "estoque": null,
+    "desc": "A tradução da realeza feminina (\"Maleka\" significa rainha). Uma fragrância sofisticada, doce e envolvente que une o frescor exótico e frutado da lichia com a elegância atalcada da flor de lírio, repousando sobre uma base irresistivelmente cremosa de pralinê, sândalo e ambroxan.",
+    "destaque": false,
+    "premium": false,
+    "notas": {
+      "saida": "Lichia, Bergamota e Pimenta Rosa.",
+      "coracao": "Lírio e Raiz de Íris",
+      "fundo": "Pralinê, Sândalo e Ambroxan."
+    }
+  },
+  {
+    "id": "1790264029014",
+    "nome": "Shagaf Al Ward",
+    "marca": "Al Wataniah",
+    "categoria": "Feminina",
+    "img": "https://i.postimg.cc/GmdtywVn/4a2cebc0-4c11-4a88-8865-8f2688a5107d-(1).jpg",
+    "preco": null,
+    "estoque": null,
+    "desc": "É uma fragrância floral e oriental opulenta que celebra a feminilidade e o romantismo. Sua abertura combina o frescor floral do jasmim com a delicadeza da rosa de maio e o toque aveludado do osmanthus, evoluindo para um corpo exuberante de tuberosa e narciso, com uma base sofisticada e aconchegante de âmbar e cedro.",
+    "destaque": false,
+    "premium": false,
+    "notas": {
+      "saida": "Jasmim, Rosa de Maio e Osmanthus",
+      "coracao": "Tuberosa Indiana e Narciso",
+      "fundo": "Âmbar e Cedro"
+    }
+  },
+  {
+    "id": "1790264118467",
+    "nome": "Durrat Al Aroos",
+    "marca": "Al Wataniah",
+    "categoria": "Feminina",
+    "img": "https://i.postimg.cc/Y9WMPbZZ/d15c6cfc-0910-44db-aa4d-263514460ee4.jpg",
+    "preco": null,
+    "estoque": null,
+    "desc": "É uma fragrância oriental refinada, feminina e misteriosa. Abre com a suavidade acolhedora do almíscar branco mesclado ao toque amadeirado e terroso do cipriol, revelando um coração viciante e especiado de baunilha, cardamomo e açafrão, sustentado por uma base sedutora de fava tonka e madeira guaiac.",
+    "destaque": true,
+    "premium": false,
+    "notas": {
+      "saida": "Almíscar Branco e Cipriol (Nagarmota)",
+      "coracao": "Baunilha, Cardamomo e Açafrão",
+      "fundo": "Fava Tonka (Cumaru) e Madeira Guaiac"
+    }
+  },
+  {
+    "id": "1790267040126",
+    "nome": "Fakhar Black (Pride of Lattafa)",
+    "marca": "Lattafa",
+    "categoria": "Masculina",
+    "img": "https://i.postimg.cc/tRLdxJ9P/b046cfa4-116b-43ed-9093-6ab4982abea0.jpg",
+    "preco": null,
+    "estoque": null,
+    "desc": "Conhecido pelo frasco imponente em preto e prata, é uma fragrância aromática oriental moderna e extremamente versátil. Abre com o frescor frutado e efervescente da maçã verde e bergamota com um toque picante de gengibre, revelando um coração aromático sofisticado de lavanda e sálvia, finalizado por uma base marcante e envolvente de fava tonka, cedro e notas ambaradas.",
+    "destaque": false,
+    "premium": false,
+    "notas": {
+      "saida": "Maçã Verde, Bergamota e Gengibre",
+      "coracao": "Lavanda, Sálvia, Bagas de Zimbro e Gerânio",
+      "fundo": "Fava Tonka, Cedro, Madeira de Âmbar e Vetiver"
+    }
+  },
+  {
+    "id": "1790267126557",
+    "nome": "Fakhar Rose (Fakhar Feminino)",
+    "marca": "Lattafa",
+    "categoria": "Feminina",
+    "img": "https://i.postimg.cc/PxvpXbp2/488a4cd3-b131-4c1c-85fa-85bad633f300.jpg",
+    "preco": null,
+    "estoque": null,
+    "desc": "Conhecido pelo frasco escultural branco e dourado com relevo floral. É uma fragrância floral frutada radiante, elegante e extremamente feminina. Abre com uma explosão suculenta e doce de romã, lírio e frutas vermelhas, revelando um buquê floral exuberante dominado pela tuberosa, jasmim e rosa, repousando sobre uma base aveludada e cremosa de baunilha, sândalo e almíscar branco.",
+    "destaque": false,
+    "premium": false,
+    "notas": {
+      "saida": "Romã, Frutas Vermelhas, Lírio e Aldeídos",
+      "coracao": "Tuberosa, Jasmim, Gardênia, Madressilva, Rosa e Ylang Ylang",
+      "fundo": "Baunilha, Sândalo, Ambroxan e Almíscar Branco"
+    }
+  },
+  {
+    "id": "1790267265543",
+    "nome": "Angham",
+    "marca": "Lattafa",
+    "categoria": "Compartilhável",
+    "img": "https://i.postimg.cc/4yb3yWfg/43d40f31-1491-481d-b2fc-3733329c2700.jpg",
+    "preco": null,
+    "estoque": null,
+    "desc": "Inspirado na melodia e na harmonia dos sentidos (\"Angham\" remete a notas musicais e melodias). É uma fragrância oriental gourmand elegante, quente e viciante que combina o frescor especiado do gengibre e da tangerina com um coração aromático e aveludado de lavanda, pralinê e cacau. Seu fundo encerra com uma baunilha rica e envolvente abraçada por âmbar e almíscar, criando uma assinatura olfativa acolhedora e refinada.",
+    "destaque": false,
+    "premium": false,
+    "notas": {
+      "saida": "Mandarina (Tangerina), Gengibre e Pimenta Rosa",
+      "coracao": "Pralinê, Lavanda, Cacau e Jasmim",
+      "fundo": "Baunilha, Âmbar e Almíscar"
+    }
+  },
+  {
+    "id": "1790267364751",
+    "nome": "Alpine Homme Sport",
+    "marca": "Maison Alhambra",
+    "categoria": "Masculina",
+    "img": "https://i.postimg.cc/tJyXKFhd/f73b21a3-cb4e-45f4-82ea-3c563ddc7230.jpg",
+    "preco": null,
+    "estoque": null,
+    "desc": "Inspirado no icônico Allure Homme Sport, é uma fragrância amadeirada aromática dinâmica, vibrante e sofisticada. Abre com o frescor revigorante e cítrico da mandarina e da hortelã, equilibrado pelas notas aromáticas do cipreste e da sálvia. No coração, revela uma combinação elegante e sutilmente picante de cedro e pimenta, repousando sobre uma base masculina e marcante de fava tonka, almíscar branco e sândalo.",
+    "destaque": false,
+    "premium": false,
+    "notas": {
+      "saida": "Mandarina (Tangerina), Hortelã, Cipreste e Sálvia",
+      "coracao": "Cedro e Pimenta",
+      "fundo": "Fava Tonka, Almíscar Branco e Madeira de Sândalo"
+    }
+  },
+  {
+    "id": "1790267663592",
+    "nome": "Atoor",
+    "marca": "Al Atrab",
+    "categoria": "Feminina",
+    "img": "https://i.postimg.cc/DzXnmx6N/6a48b5df-6387-4929-8ee5-b8bb90f36b44.jpg",
+    "preco": null,
+    "estoque": null,
+    "desc": "Uma fragrância floral oriental elegante, envolvente e delicada. Apresentada em um frasco rosa com acabamento e caligrafia árabe em dourado, combina o frescor sutil de notas frutadas com a suntuosidade de flores nobres como rosa e jasmim, equilibradas por uma base doce e acolhedora de baunilha, âmbar e almíscar suave.",
+    "destaque": false,
+    "premium": false,
+    "notas": {
+      "saida": "Frutas Vermelhas e Toques Cítricos",
+      "coracao": "Rosa, Jasmim e Flores Brancas",
+      "fundo": "Baunilha, Âmbar e Almíscar Branco"
+    }
+  },
+  {
+    "id": "1790267888737",
+    "nome": "Hayaati",
+    "marca": "Lattafa",
+    "categoria": "Masculina",
+    "img": "https://i.postimg.cc/GhKkSQkz/0ce64579-dfd3-4431-93f1-b45b2db416b0.jpg",
+    "preco": 180,
+    "estoque": 1,
+    "desc": "O nome significa \"Minha Vida\" em árabe. É uma fragrância amadeirada aromática contemporânea, vibrante, versátil e cheia de energia. Abre com uma saída refrescante e suculenta dominada pela maçã crocante e bergamota, desenvolvendo um coração aromático e quente com toques de canela e notas amadeiradas, sobre uma base envolvente, sedutora e duradoura de baunilha e almíscar.",
+    "destaque": false,
+    "premium": false,
+    "notas": {
+      "saida": "Maçã e Bergamota",
+      "coracao": "Canela e Notas Amadeiradas",
+      "fundo": "Baunilha e Almíscar"
+    }
+  },
+  {
+    "id": "1790268479608",
+    "nome": "Jardin de Rêve",
+    "marca": "Maison Alhambra",
+    "categoria": "Feminina",
+    "img": "https://i.postimg.cc/5y3FT4FN/a9522b98-87a9-48f9-a2b6-5223113416eb.jpg",
+    "preco": null,
+    "estoque": null,
+    "desc": "Inspirado no clássico e luxuoso J'adore, Jardin de Rêve traduz a sofisticação atemporal de um buquê floral dourado e radiante. Sua abertura frutada e luminosa combina pera suculenta, melão, pêssego e nuances cítricas de bergamota e mandarina. No corpo, revela a elegância exuberante de flores nobres como jasmim, lírio-do-vale, tuberosa e magnólia, repousando sobre uma base aveludada, refinada e aconchegante de baunilha, cedro e almíscar branco.",
+    "destaque": false,
+    "premium": false,
+    "notas": {
+      "saida": "Pera, Pêssego, Melão, Magnólia, Mandarina e Bergamota",
+      "coracao": "Jasmim, Lírio-do-Vale, Tuberosa, Frésia, Rosa e Orquídea",
+      "fundo": "Baunilha, Cedro, Almíscar Branco e Amora"
+    }
+  },
+  {
+    "id": "1790268620453",
+    "nome": "Voyage Pour Homme",
+    "marca": "Arqus",
+    "categoria": "Masculina",
+    "img": "https://i.postimg.cc/wjPRSb35/653acb9b-e9a9-4f0c-83fd-53331cbd323c.jpg",
+    "preco": null,
+    "estoque": null,
+    "desc": "Uma fragrância amadeirada e aromática sofisticada, marcante e versátil, concebida para o homem dinâmico e moderno. O frasco com acabamento em degradé escuro reflete elegância e presença. Abre com o frescor vivificante de notas cítricas e acordes verdes, evoluindo para um coração aromático e sutilmente especiado com lavanda e cardamomo, assentando sobre uma base masculina, densa e duradoura de cedro, sândalo, âmbar e almíscar suave.",
+    "destaque": false,
+    "premium": false,
+    "notas": {
+      "saida": "Bergamota, Mandarina e Folhas Verdes",
+      "coracao": "Cardamomo, Lavanda e Pimenta Rosa",
+      "fundo": "Madeira de Cedro, Sândalo, Âmbar e Almíscar"
     }
   }
 ]
