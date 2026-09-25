@@ -970,3 +970,127 @@ html { scroll-padding-top: calc(var(--nav-h) + 16px); }
     font-size: .85rem;
     margin: 6px 0;
 }
+
+/* ==========================================================================
+   EXPERIÊNCIA DA VITRINE — REFINAMENTO EDITORIAL
+   ========================================================================== */
+.navbar {
+    padding: 14px max(20px, env(safe-area-inset-right)) 14px max(20px, env(safe-area-inset-left));
+    background: rgba(11, 10, 9, .82);
+    border-bottom-color: rgba(243, 229, 171, .12);
+}
+.nav-container { max-width: 1320px; }
+.nav-links { gap: clamp(14px, 2vw, 28px); }
+.nav-links > a:not(.nav-social) {
+    position: relative;
+    padding: 8px 0;
+}
+.nav-links > a:not(.nav-social)::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 2px;
+    height: 1px;
+    background: var(--color-gold);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform .35s ease;
+}
+.nav-links > a:not(.nav-social):hover::after,
+.nav-links > a[aria-current="page"]::after { transform: scaleX(1); transform-origin: left; }
+
+.hero {
+    isolation: isolate;
+    min-height: min(760px, 100svh);
+    padding: clamp(150px, 17vw, 210px) max(24px, 6vw) clamp(90px, 10vw, 140px);
+    display: grid;
+    grid-template-columns: minmax(0, 640px) minmax(240px, 320px);
+    align-items: end;
+    justify-content: center;
+    gap: clamp(36px, 9vw, 150px);
+    background:
+        radial-gradient(circle at 65% 45%, rgba(212, 175, 55, .18), transparent 24%),
+        radial-gradient(circle at 10% 90%, rgba(139, 111, 71, .18), transparent 32%),
+        linear-gradient(115deg, #0c0b09 4%, #15130f 54%, #0c0b09 100%);
+}
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: .25;
+    background-image: linear-gradient(rgba(243,229,171,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(243,229,171,.07) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+}
+.hero-content { max-width: 640px; text-align: left; }
+.hero h1 {
+    max-width: 640px;
+    margin: 18px 0 22px;
+    font-size: clamp(3rem, 6.1vw, 5.9rem);
+    line-height: .98;
+    letter-spacing: -.035em;
+    text-wrap: balance;
+}
+.hero h1 em { color: var(--color-gold-light); font-style: italic; font-weight: 500; }
+.hero-lead { max-width: 510px; color: #d1c8bb; font-size: clamp(1rem, 1.4vw, 1.14rem); line-height: 1.75; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.btn-primary { background: var(--color-gold); color: #15120b; border-color: var(--color-gold); box-shadow: 0 10px 32px rgba(212,175,55,.18); }
+.btn-primary:hover { background: var(--color-gold-light); border-color: var(--color-gold-light); transform: translateY(-2px); }
+.btn-ghost { border-color: rgba(243,229,171,.35); color: var(--color-text-primary); }
+.btn-ghost:hover { border-color: var(--color-gold); color: var(--color-gold-light); transform: translateY(-2px); }
+.hero-highlights { display: flex; flex-wrap: wrap; gap: 14px 30px; margin-top: clamp(38px, 5vw, 60px); }
+.hero-highlights div { padding-left: 13px; border-left: 1px solid rgba(212,175,55,.65); }
+.hero-highlights dt { color: var(--color-gold-light); font-family: var(--font-display); font-size: .86rem; letter-spacing: .08em; }
+.hero-highlights dd { margin: 3px 0 0; color: var(--color-text-secondary); font-size: .75rem; }
+.hero-card {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(28px, 4vw, 44px);
+    border: 1px solid rgba(212,175,55,.34);
+    background: linear-gradient(145deg, rgba(40,34,23,.9), rgba(15,13,10,.86));
+    box-shadow: 18px 20px 0 rgba(212,175,55,.07), var(--shadow-lg);
+}
+.hero-card::before { content: ''; position: absolute; inset: 12px; border: 1px solid rgba(243,229,171,.11); pointer-events: none; }
+.hero-card p, .section-kicker { color: var(--color-gold); font-size: .68rem; font-weight: 700; letter-spacing: .2em; }
+.hero-card strong { display: block; margin: 18px 0; font-family: var(--font-display); font-size: clamp(2rem, 3.4vw, 3rem); font-weight: 500; line-height: 1.05; }
+.hero-card span { display: block; color: var(--color-text-secondary); line-height: 1.65; font-size: .92rem; }
+.hero-card a { display: inline-flex; gap: 12px; margin-top: 26px; color: var(--color-gold-light); font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.hero-card a:hover { color: var(--color-gold); }
+
+.gallery-wrapper { max-width: 1320px; padding: clamp(72px, 10vw, 130px) max(20px, 4vw); }
+.gallery-header { max-width: 690px; margin: 0 auto clamp(36px, 6vw, 64px); }
+.gallery-header h2 { margin-top: 14px; font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1.12; }
+.gallery-header .divider { margin: 22px auto; }
+.gallery-header .subtitle { max-width: 590px; margin: 0 auto; line-height: 1.75; }
+.brand-filters, .category-filters { max-width: 1080px; margin-left: auto; margin-right: auto; }
+.btn-brand, .btn-cat { border-radius: 999px; }
+.perfume-grid { gap: clamp(16px, 2vw, 26px); }
+.card { border-color: rgba(243,229,171,.12); border-radius: 3px; overflow: hidden; }
+.card-info { padding: 28px 18px 24px; }
+.card-title { font-size: clamp(1.15rem, 1.8vw, 1.42rem); margin-bottom: 16px; }
+.card:hover { transform: translateY(-8px); }
+.card:hover .card-img-box img { transform: scale(1.06); }
+.premium-price { margin-top: -4px; }
+
+@media (max-width: 760px) {
+    .navbar { padding-top: 12px; padding-bottom: 12px; }
+    .nav-container { gap: 12px; }
+    .nav-links { gap: 12px; }
+    .nav-social { display: none !important; }
+    .nav-links > a:not(.nav-social) { font-size: .57rem; letter-spacing: .08em; }
+    .hero { min-height: auto; grid-template-columns: 1fr; gap: 38px; padding-top: 130px; padding-bottom: 68px; }
+    .hero-content { text-align: center; }
+    .hero h1 { font-size: clamp(2.8rem, 13vw, 4.4rem); }
+    .hero-lead { margin-left: auto; margin-right: auto; }
+    .hero-actions, .hero-highlights { justify-content: center; }
+    .hero-card { max-width: 480px; width: 100%; margin: 0 auto; text-align: left; }
+    .gallery-wrapper { padding-top: 70px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nav-links > a:not(.nav-social)::after { transition: none; }
+    .btn-primary:hover, .btn-ghost:hover, .card:hover { transform: none; }
+}
