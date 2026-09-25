@@ -648,3 +648,23 @@ select option { background: var(--color-bg-dark-alt); }
 .order-request-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 8px; }
 .order-request-actions time { width: 100%; text-align: right; }
 @media (max-width: 640px) { .order-request-actions { justify-content: flex-start; } .order-request-actions time { text-align: left; } }
+
+/* Ações dos pedidos: hierarquia clara e alvos confortáveis para toque. */
+.order-request { align-items: center; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,.05); }
+.order-request-actions { min-width: 220px; gap: 10px; }
+.order-request-actions time { display: flex; justify-content: flex-end; align-items: center; gap: 6px; color: var(--color-text-tertiary); font-size: .75rem; }
+.order-action-buttons { display: flex; justify-content: flex-end; gap: 8px; }
+.order-action { min-height: 38px; padding: 8px 11px; border-radius: 6px; font-size: .72rem; letter-spacing: .04em; }
+.order-action-status { color: #426c49; border-color: rgba(66,108,73,.5); background: rgba(66,108,73,.08); }
+.order-action-status:hover:not(:disabled) { color: #fff; border-color: #426c49; background: #426c49; }
+.order-action-delete { color: var(--color-danger); border-color: rgba(183,70,70,.38); background: transparent; }
+.order-action-delete:hover:not(:disabled) { color: #fff; border-color: var(--color-danger); background: var(--color-danger); }
+.order-request.is-completed .order-action-status { color: var(--color-gold); border-color: rgba(212,175,55,.48); background: rgba(212,175,55,.08); }
+.order-request.is-completed .order-action-status:hover:not(:disabled) { color: var(--color-bg-dark); background: var(--color-gold); }
+@media (max-width: 640px) {
+    .order-request { padding: 16px; }
+    .order-request-actions { min-width: 0; width: 100%; }
+    .order-request-actions time, .order-action-buttons { justify-content: flex-start; }
+    .order-action-buttons { width: 100%; }
+    .order-action { flex: 1; min-height: 44px; justify-content: center; }
+}
