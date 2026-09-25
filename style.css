@@ -1194,3 +1194,40 @@ html { scroll-padding-top: calc(var(--nav-h) + 16px); }
     .order-trigger { width: 100%; justify-content: space-between; min-height: 54px; margin-top: 22px; padding: 12px 14px; }
     .order-trigger-label { font-size: .78rem; }
 }
+
+/* Controles e navegação mobile: formas retas e ícones legíveis. */
+.btn-brand,
+.btn-cat { border-radius: 2px; }
+
+@media (max-width: 768px) {
+    .nav-container { gap: 8px; }
+    .nav-links {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+    }
+    .nav-links > a:not(.nav-social),
+    .nav-links > a[href="catalogo.html"] {
+        display: inline-flex;
+        padding: 7px 0;
+        font-size: .61rem;
+        letter-spacing: .07em;
+    }
+    .nav-social,
+    .nav-social[data-site-instagram] {
+        display: inline-flex !important;
+        width: auto;
+        min-width: 34px;
+        min-height: 34px;
+        padding: 8px 0 8px 4px;
+        color: var(--color-gold-light);
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        font-size: 0;
+    }
+    .nav-social[data-site-instagram] .icon { width: 18px; height: 18px; }
+    .btn-brand { border-radius: 2px; }
+}
