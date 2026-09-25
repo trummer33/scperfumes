@@ -1172,3 +1172,25 @@ html { scroll-padding-top: calc(var(--nav-h) + 16px); }
     }
     .nav-social[data-site-instagram] .icon { width: 16px; height: 16px; }
 }
+
+/* Ação de encomenda: visível sem competir com a exploração da coleção. */
+.order-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 48px;
+    margin-top: 26px;
+    padding: 10px 14px;
+    color: var(--color-text-primary);
+    text-align: left;
+    border: 1px solid rgba(212,175,55,.44);
+    border-radius: 2px;
+    background: rgba(212,175,55,.07);
+}
+.order-trigger-label { color: var(--color-text-secondary); font-size: .76rem; }
+.order-trigger strong { color: var(--color-gold-light); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; }
+.order-trigger:hover, .order-trigger:focus-visible { background: rgba(212,175,55,.15); color: var(--color-text-primary); box-shadow: 0 8px 24px rgba(212,175,55,.12); }
+@media (max-width: 760px) {
+    .order-trigger { width: 100%; justify-content: space-between; min-height: 54px; margin-top: 22px; padding: 12px 14px; }
+    .order-trigger-label { font-size: .78rem; }
+}
