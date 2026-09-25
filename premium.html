@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0B0A09">
+    <meta name="description" content="Seleção Premium da S&C Perfumes.">
+    <title>Seleção Premium | S&C Perfumes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/jpeg" href="https://i.postimg.cc/3RjzpmmP/8d1edb37-3898-4e36-816b-3923e78d7772.jpg">
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo" aria-label="S&C Perfumes — início"><span class="logo-monogram">S&amp;C</span><span class="logo-wordmark">PERFUMES</span></a>
+            <nav class="nav-links" aria-label="Navegação principal">
+                <a href="/">Destaques</a>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="premium.html" aria-current="page">Seleção Premium</a>
+                <a href="https://wa.me/5567998034726" data-site-whatsapp target="_blank" rel="noopener noreferrer" class="nav-social" aria-label="WhatsApp">WhatsApp</a>
+                <a href="https://www.instagram.com/sc._perfumes/" data-site-instagram target="_blank" rel="noopener noreferrer" class="nav-social" aria-label="Instagram">Instagram</a>
+            </nav>
+        </div>
+    </header>
+    <main class="premium-section premium-page" aria-labelledby="premium-title">
+        <header class="premium-header">
+            <p class="hero-eyebrow">COLEÇÃO RESERVA</p>
+            <h1 id="premium-title">Seleção Premium</h1>
+            <p>Fragrâncias selecionadas para quem procura algo verdadeiramente especial.</p>
+        </header>
+        <p class="catalog-count" id="premium-count" aria-live="polite"></p>
+        <div class="premium-grid" id="premium-grid" role="region" aria-live="polite"><div class="loading"><span class="spinner" aria-hidden="true"></span> Carregando seleção...</div></div>
+    </main>
+    <dialog class="modal" id="modal" aria-labelledby="modal-title">
+        <div class="modal-box"><button class="btn-close" type="button" data-close aria-label="Fechar">Fechar</button><div class="modal-layout"><div class="modal-img-container"><img src="" alt="" id="modal-img" decoding="async"></div><div class="modal-info-container"><div class="modal-info-content"><span class="modal-brand" id="modal-brand"></span><h2 class="modal-title" id="modal-title"></h2><div class="modal-divider"></div><p class="modal-desc" id="modal-desc"></p><div class="pyramid"><h3>Pirâmide Olfativa</h3><ul id="modal-notes"></ul></div><div class="modal-action"><a id="product-contact" href="https://wa.me/5567998034726" data-site-whatsapp target="_blank" rel="noopener noreferrer" class="btn btn-instagram">Tirar dúvidas e comprar</a></div></div></div></div></div>
+    </dialog>
+    <script src="site-settings.js" defer></script><script src="premium.js" defer></script>
+</body>
+</html>
