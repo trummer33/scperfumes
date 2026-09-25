@@ -1155,3 +1155,20 @@ html { scroll-padding-top: calc(var(--nav-h) + 16px); }
     .order-form input, .order-form textarea { font-size: 16px; }
     .order-form .btn { width: 100%; text-align: center; }
 }
+
+/* Instagram é o canal principal de contato, inclusive no mobile. */
+@media (max-width: 760px) {
+    .nav-links { align-items: center; }
+    .nav-social { display: none !important; }
+    .nav-social[data-site-instagram] {
+        display: inline-flex !important;
+        min-width: 34px;
+        min-height: 34px;
+        padding: 8px;
+        color: var(--color-gold-light);
+        border: 1px solid rgba(212,175,55,.42);
+        border-radius: 50%;
+        font-size: 0;
+    }
+    .nav-social[data-site-instagram] .icon { width: 16px; height: 16px; }
+}
