@@ -444,7 +444,8 @@
                 const requests = await response.json();
                 list.innerHTML = requests.length ? requests.map((request) => {
                     const date = new Date(request.createdAt).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" });
-                    return `<article class="order-request"><div><strong>${esc(request.fragrance)}</strong><span>${esc(request.name)} · ${esc(request.contact)}</span>${request.details ? `<p>${esc(request.details)}</p>` : ""}</div><time datetime="${esc(request.createdAt)}">${date}</time></article>`;
+                    const completed = request.status === "completed";
+                    return `<article class="order-request ${completed ? "is-completed" : ""}"><div><span class="order-status">${completed ? "Concluída" : "Pendente"}</span><strong>${esc(request.fragrance)}</strong><span>${esc(request.name)} · ${esc(request.contact)}</span>${request.details ? `<p>${esc(request.details)}</p>` : ""}</div><div class="order-request-actions"><time datetime="${esc(request.createdAt)}">${date}</time><button class="btn btn-secondary" type="button" data-order-status="${esc(request.id)}" data-status="${completed ? "pending" : "completed"}">${completed ? "Reabrir" : "Concluir"}</button><button class="btn btn-danger" type="button" data-order-delete="${esc(request.id)}">Remover</button></div></article>`;
                 }).join("") : '<p style="color:var(--text-muted);">Nenhum pedido recebido ainda.</p>';
             } catch {
                 list.innerHTML = '<p style="color:var(--danger);">Não foi possível carregar os pedidos.</p>';
@@ -452,6 +453,25 @@
         }
 
         document.getElementById("btn-reload-orders").addEventListener("click", loadOrderRequests);
+        document.getElementById("order-requests-list").addEventListener("click", async (event) => {
+            const statusButton = event.target.closest("[data-order-status]");
+            const deleteButton = event.target.closest("[data-order-delete]");
+            const id = statusButton?.dataset.orderStatus || deleteButton?.dataset.orderDelete;
+            if (!id) return;
+            if (deleteButton && !confirm("Remover este pedido de encomenda?")) return;
+            try {
+                const response = await fetch(`/api/order-requests?id=${encodeURIComponent(id)}`, {
+                    method: deleteButton ? "DELETE" : "PATCH",
+                    headers: deleteButton ? undefined : { "Content-Type": "application/json" },
+                    body: deleteButton ? undefined : JSON.stringify({ status: statusButton.dataset.status })
+                });
+                if (!response.ok) throw new Error();
+                toast(deleteButton ? "Pedido removido." : statusButton.dataset.status === "completed" ? "Pedido concluído." : "Pedido reaberto.");
+                await loadOrderRequests();
+            } catch {
+                toast("Não foi possível atualizar o pedido.", true);
+            }
+        });
 
         // Navegação
         document.querySelectorAll(".nav-item:not(.btn-logout)").forEach(btn => {
