@@ -634,3 +634,11 @@ select option { background: var(--color-bg-dark-alt); }
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+.order-requests-list { display: grid; gap: 12px; }
+.order-request { display: flex; justify-content: space-between; gap: 18px; padding: 18px; background: var(--card-bg, #fff); border: 1px solid var(--color-divider); border-radius: 8px; }
+.order-request strong, .order-request span { display: block; }
+.order-request span, .order-request p, .order-request time { color: var(--text-muted); font-size: .88rem; }
+.order-request p { margin: 8px 0 0; white-space: pre-wrap; }
+.order-request time { flex: 0 0 auto; }
+@media (max-width: 640px) { .order-request { display: grid; gap: 8px; } }

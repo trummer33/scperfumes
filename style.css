@@ -1094,3 +1094,64 @@ html { scroll-padding-top: calc(var(--nav-h) + 16px); }
     .nav-links > a:not(.nav-social)::after { transition: none; }
     .btn-primary:hover, .btn-ghost:hover, .card:hover { transform: none; }
 }
+
+/* Encomendas: caminho discreto na vitrine e formulário pensado para toque */
+.order-trigger {
+    margin-top: 22px;
+    padding: 0;
+    color: var(--color-text-tertiary);
+    font: inherit;
+    font-size: .76rem;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid rgba(184,175,163,.28);
+    transition: color .25s ease, border-color .25s ease;
+}
+.order-trigger:hover, .order-trigger:focus-visible { color: var(--color-gold-light); border-color: var(--color-gold); outline: none; }
+.order-dialog {
+    width: min(calc(100% - 32px), 500px);
+    margin: auto;
+    padding: 0;
+    color: var(--color-text-primary);
+    background: transparent;
+    border: 0;
+}
+.order-dialog::backdrop { background: rgba(6, 6, 5, .78); backdrop-filter: blur(6px); }
+.order-form {
+    position: relative;
+    display: grid;
+    gap: 16px;
+    padding: clamp(26px, 6vw, 40px);
+    background: linear-gradient(145deg, #211d16, #11100d);
+    border: 1px solid rgba(212,175,55,.38);
+    box-shadow: var(--shadow-xl);
+}
+.order-form h2 { margin-top: -5px; font-size: clamp(1.6rem, 6vw, 2.25rem); line-height: 1.15; }
+.order-form > p:not(.section-kicker):not(.order-feedback) { color: var(--color-text-secondary); font-size: .92rem; line-height: 1.6; }
+.order-form label { display: grid; gap: 7px; color: var(--color-gold-light); font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.order-form input, .order-form textarea {
+    width: 100%;
+    min-height: 46px;
+    padding: 11px 12px;
+    color: var(--color-text-primary);
+    font: inherit;
+    background: rgba(255,255,255,.04);
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+}
+.order-form textarea { resize: vertical; }
+.order-form input:focus, .order-form textarea:focus { outline: 2px solid rgba(212,175,55,.72); outline-offset: 1px; border-color: var(--color-gold); }
+.order-form .btn { justify-self: start; min-height: 46px; }
+.order-close { position: absolute; top: 11px; right: 14px; width: 38px; height: 38px; color: var(--color-text-secondary); font-size: 1.7rem; line-height: 1; background: transparent; border: 0; }
+.order-close:hover, .order-close:focus-visible { color: var(--color-gold); outline: none; }
+.order-feedback { min-height: 1.2em; color: var(--color-gold-light); font-size: .86rem; }
+.order-honeypot { position: absolute; left: -9999px; opacity: 0; }
+
+@media (max-width: 760px) {
+    .hero-highlights { gap: 14px 22px; }
+    .order-trigger { min-height: 44px; margin-top: 17px; font-size: .72rem; }
+    .order-dialog { width: min(calc(100% - 24px), 500px); }
+    .order-form { gap: 14px; padding: 28px 22px 24px; }
+    .order-form input, .order-form textarea { font-size: 16px; }
+    .order-form .btn { width: 100%; text-align: center; }
+}

@@ -144,6 +144,7 @@
                 <button class="nav-item active" data-target="dashboard"><i class="fas fa-chart-line"></i> Dashboard</button>
                 <button class="nav-item" data-target="products"><i class="fas fa-wine-bottle"></i> Perfumes</button>
                 <button class="nav-item" data-target="add-product"><i class="fas fa-plus-circle"></i> Novo Perfume</button>
+                <button class="nav-item" data-target="order-requests"><i class="fas fa-envelope-open-text"></i> Encomendas</button>
                 <button class="nav-item" data-target="site-settings"><i class="fas fa-gear"></i> Configurações</button>
                 <button class="nav-item btn-logout" id="btn-logout"><i class="fas fa-sign-out-alt"></i> Sair e voltar</button>
             </nav>
@@ -179,6 +180,15 @@
                         </div>
                     </div>
                     <button class="btn btn-secondary" id="btn-reload" type="button"><i class="fas fa-rotate"></i> Recarregar do catalog.json do site</button>
+                </section>
+
+                <!-- Encomendas -->
+                <section id="order-requests" class="section">
+                    <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:16px;">
+                        <div><h3>Pedidos de encomenda</h3><p style="color:var(--text-muted); margin-top:4px;">Solicitações enviadas pela vitrine.</p></div>
+                        <button class="btn btn-secondary" id="btn-reload-orders" type="button"><i class="fas fa-rotate"></i> Atualizar</button>
+                    </div>
+                    <div id="order-requests-list" class="order-requests-list"><p style="color:var(--text-muted);">Carregando pedidos...</p></div>
                 </section>
 
                 <!-- Configurações do site -->
@@ -411,6 +421,7 @@
             updateStats();
             try { await loadSiteSettings(); }
             catch { toast("Não foi possível carregar as configurações do site.", true); }
+            await loadOrderRequests();
         }
 
         document.getElementById("btn-reload").addEventListener("click", async () => {
@@ -424,6 +435,24 @@
             renderTable(q ? products.filter(p => (p.nome + " " + p.marca).toLowerCase().includes(q)) : products);
         });
 
+        async function loadOrderRequests() {
+            const list = document.getElementById("order-requests-list");
+            list.innerHTML = '<p style="color:var(--text-muted);">Carregando pedidos...</p>';
+            try {
+                const response = await fetch("/api/order-requests", { cache: "no-store" });
+                if (!response.ok) throw new Error();
+                const requests = await response.json();
+                list.innerHTML = requests.length ? requests.map((request) => {
+                    const date = new Date(request.createdAt).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" });
+                    return `<article class="order-request"><div><strong>${esc(request.fragrance)}</strong><span>${esc(request.name)} · ${esc(request.contact)}</span>${request.details ? `<p>${esc(request.details)}</p>` : ""}</div><time datetime="${esc(request.createdAt)}">${date}</time></article>`;
+                }).join("") : '<p style="color:var(--text-muted);">Nenhum pedido recebido ainda.</p>';
+            } catch {
+                list.innerHTML = '<p style="color:var(--danger);">Não foi possível carregar os pedidos.</p>';
+            }
+        }
+
+        document.getElementById("btn-reload-orders").addEventListener("click", loadOrderRequests);
+
         // Navegação
         document.querySelectorAll(".nav-item:not(.btn-logout)").forEach(btn => {
             btn.addEventListener("click", () => {
@@ -432,6 +461,7 @@
                 document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
                 document.getElementById(btn.dataset.target).classList.add("active");
                 document.getElementById("page-title").textContent = btn.textContent.trim();
+                if (btn.dataset.target === "order-requests") loadOrderRequests();
             });
         });
 
