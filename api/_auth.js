@@ -1,38 +1,49 @@
 const crypto = require('crypto');
+
 const COOKIE = 'sc_admin_session';
+const SECRET = process.env.ADMIN_SECRET || 'scperfumes-secret-key-2026';
 
-function sameValue(left, right) {
-  const a = Buffer.from(left || '');
-  const b = Buffer.from(right || '');
-  return a.length === b.length && crypto.timingSafeEqual(a, b);
-}
+// Credenciais de acesso
+const USERS = {
+  'joao_sc': 'admin'
+};
 
-function users() {
-  const projectUsers = ['sandra_sc', 'cleber_sc', 'joao_sc']
-    .filter((username) => process.env[username])
-    .map((username) => ({ username, password: process.env[username] }));
-  try {
-    const parsed = JSON.parse(process.env.ADMIN_USERS || '[]');
-    const configured = Array.isArray(parsed) ? parsed.filter((user) => user?.username && user?.password) : [];
-    return [...projectUsers, ...configured];
-  } catch { return projectUsers; }
-}
-
-function sessionToken(username) {
-  const user = users().find((entry) => entry.username === String(username).toLowerCase());
-  return user ? `${username}.${crypto.createHmac('sha256', user.password).update('sc-perfumes-admin-v2').digest('hex')}` : '';
-}
-
-function hasSession(req) {
-  const token = req.headers.cookie?.match(new RegExp(`(?:^|;\\s*)${COOKIE}=([^;]+)`))?.[1];
-  if (!token) return false;
-  const [username] = token.split('.', 1);
-  return Boolean(username) && sameValue(token, sessionToken(username));
+function hashToken(username) {
+  return crypto.createHmac('sha256', SECRET).update(username).digest('hex');
 }
 
 function authenticate(username, password) {
-  const user = users().find((entry) => entry.username === String(username).toLowerCase());
-  return user && sameValue(password, user.password) ? user : null;
+  if (!username || !password) return null;
+  const cleanUser = String(username).trim().toLowerCase();
+  
+  if (USERS[cleanUser] && USERS[cleanUser] === String(password)) {
+    return { username: cleanUser };
+  }
+  return null;
 }
 
-module.exports = { COOKIE, hasSession, sameValue, sessionToken, authenticate };
+function sessionToken(username) {
+  const hash = hashToken(username);
+  return `${username}.${hash}`;
+}
+
+function hasSession(req) {
+  const cookies = req.headers.cookie || '';
+  const match = cookies.split(';').find(c => c.trim().startsWith(`${COOKIE}=`));
+  if (!match) return false;
+
+  const value = match.split('=')[1];
+  if (!value) return false;
+
+  const [username, hash] = value.split('.');
+  if (!username || !hash) return false;
+
+  return hashToken(username) === hash;
+}
+
+module.exports = {
+  COOKIE,
+  authenticate,
+  sessionToken,
+  hasSession
+};
